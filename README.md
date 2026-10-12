@@ -52,12 +52,6 @@ python3 scripts/validate_skills.py
 
 The validator checks skill directory IDs, required frontmatter, description length, duplicate IDs, and required `SKILL.md` files. This is static validation, not a runtime test of all workflows.
 
-## GitHub publishing
-
-1. Create an empty GitHub repository.
-2. Upload/push the contents of this directory (the `skills/` directory must be at repository root).
-3. Review `PLATFORM-COMPATIBILITY.md` before describing the collection as fully compatible.
-4. Review source licenses and attribution for the original skills before public redistribution.
 
 ## Source and licensing
 
