@@ -1,18 +1,14 @@
 ---
 name: memory-recall
-description: "Search and recall relevant memories from past sessions via memsearch. Use when the user's question could benefit from historical context, past decisions, debugging notes, previous conversations, or project knowledge -- especially questions like 'what did I decide about X', 'why did we do Y', or 'have I seen this before'. Also use when you see `[memsearch] Recall available if needed` capability hints injected via SessionStart or UserPromptSubmit. Typical flow: search for 3-5 chunks, expand the most relevant, optionally deep-drill into original transcripts via the anchor format. Skip when the question is purely about current code state (use Read/Grep), ephemeral (today's task only), or the user has explicitly asked to ignore memory."
+description: "\"Search and recall relevant memories from past sessions via memsearch. Use when the user's question could benefit from historical context, past decisions, debugging notes, previous conversations, or project knowledge -- especially questions like 'what did I decide about X', 'why did we do Y', or 'have I seen this before'. Also use when you see `[memsearch] Recall available if needed` capability hints injected via SessionStart or UserPromptSubmit. Typical flow: search for 3-5 chunks, expand the most relevant, optionally deep-drill into original transcripts via the anchor format. Skip when the question is purely about current code state (use Read/Grep), ephemeral (today's task only), or the user has explicitly asked to ignore memory.\""
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 You are a memory retrieval agent for memsearch. Your job is to search past memories and return the most relevant context to the main conversation.
 
-## Project Collection
+## OpenCode execution note
 
-Collection: !`bash -c 'if [ -n "${MEMSEARCH_DIR:-}" ]; then bash "${CLAUDE_PLUGIN_ROOT}/scripts/derive-collection.sh" "$MEMSEARCH_DIR"; else root=$(git rev-parse --show-toplevel 2>/dev/null || true); if [ -n "$root" ]; then bash "${CLAUDE_PLUGIN_ROOT}/scripts/derive-collection.sh" "$root"; else bash "${CLAUDE_PLUGIN_ROOT}/scripts/derive-collection.sh"; fi; fi'`
+OpenCode skills do not automatically evaluate Claude Code-style shell interpolation such as `!`...` in this document. Run shell commands explicitly with the available terminal tool, inspect their output, and do not assume `CLAUDE_PLUGIN_ROOT` exists. If the original plugin scripts are absent, report that dependency rather than guessing a path.
 
 ## Your Task
 

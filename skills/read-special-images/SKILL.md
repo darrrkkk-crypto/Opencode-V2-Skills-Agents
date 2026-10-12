@@ -2,10 +2,6 @@
 name: read-special-images
 description: "Read and OCR long webpage screenshots, panoramas, high-resolution images, and dense documents when whole-image display makes task-relevant text or details unreadable or unreliable. Treat aspect ratio at least 4:1, a side over 4096 px, or area over 16 million pixels only as screening signals, never automatic tiling triggers. Keep any image unsplit when the requested content is already readable, including small ultra-wide images."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Read Special Images

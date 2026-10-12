@@ -2,10 +2,6 @@
 name: excel-generator
 description: "Professional Excel spreadsheet creation with a focus on aesthetics and data analysis. Use when creating spreadsheets for organizing, analyzing, and presenting structured data in a clear and professional format. For finance/valuation/modeling deliverables (DCF, LBO, comps, 3-statement models, DD trackers), defer to finance-pro-playbooks and its formats/excel_standards.md instead — do not apply this skill's aesthetics to those outputs."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Excel Generator Skill

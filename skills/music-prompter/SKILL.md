@@ -2,10 +2,6 @@
 name: music-prompter
 description: "MUST read this skill BEFORE entering generate mode for music tasks. Covers prompt crafting framework, structure syntax, and multi-clip strategy."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Music Generation Prompt Guide

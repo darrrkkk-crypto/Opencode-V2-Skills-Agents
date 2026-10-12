@@ -2,10 +2,6 @@
 name: video-generator
 description: "Professional AI video production workflow. Use when creating videos, short films, commercials, or any video content using AI generation tools."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Video Generation

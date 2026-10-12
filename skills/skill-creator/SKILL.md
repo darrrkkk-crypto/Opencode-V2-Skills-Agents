@@ -2,10 +2,6 @@
 name: skill-creator
 description: "Guide for creating or updating skills that extend Manus via specialized knowledge, workflows, or tool integrations. For any modification or improvement request, MUST first read this skill and follow its update workflow instead of editing files directly."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Skill Creator
@@ -238,7 +234,3 @@ After testing the skill, users may request improvements. Often this happens righ
 2. Notice struggles or inefficiencies
 3. Identify how SKILL.md or bundled resources should be updated
 4. Implement changes and test again
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

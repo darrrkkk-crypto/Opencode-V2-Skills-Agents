@@ -2,10 +2,6 @@
 name: trip
 description: "Search Trip.com through the trip MCP tools and present the results as compact deal cards. Use search_flights for cheap flights and fare calendars on a route, search_hotels for hotel recommendations with stay, price, property, room, payment, meal, rating, distance or sort preferences, and search_attractions for attraction tickets, day tours and local experiences, and travel services such as airport transfers, pocket Wi-Fi and SIM cards. Do not use for trains, car rentals, cruises or visas. The tools only search; booking and payment happen on the linked Trip.com page."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Trip.com deals

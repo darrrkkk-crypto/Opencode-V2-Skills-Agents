@@ -1,11 +1,7 @@
 ---
 name: game-asset-catalog
-description: "Search, retrieve and adapt Manus game catalog (游戏素材库) sprites, models, UI, fonts and SFX through webdev-mcp. Read before catalog operations or asset-source selection under a catalog-reuse approach; standalone requests need no project."
+description: "\"Search, retrieve and adapt Manus game catalog (游戏素材库) sprites, models, UI, fonts and SFX through webdev-mcp. Read before catalog operations or asset-source selection under a catalog-reuse approach; standalone requests need no project.\""
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Game asset catalog
@@ -118,7 +114,3 @@ tasks after the prerequisites above, passing scope, choices and output paths; ar
 for the main agent to integrate and verify and must not change game logic or code. If native catalog tools are
 unavailable, report that parent sourcing is needed (role, failed operation, missing input) and continue independent
 work. Never read credentials, alter MCP config, start another server or call backend endpoints.
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

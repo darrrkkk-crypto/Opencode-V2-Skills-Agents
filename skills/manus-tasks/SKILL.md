@@ -2,10 +2,6 @@
 name: manus-tasks
 description: "Use the Manus Tasks Addon inside Manus to create, update and find tasks, read task history, send task messages, create or update Projects, and obtain a temporary Manus API key for scripts."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Manus Tasks Addon
@@ -83,7 +79,3 @@ For a task waiting on a normal question, use `send_task_message`. An action conf
 MCP input schemas are the authority for direct tool arguments; using those tools does not require the `manus-api` skill. For script-based API v2 request/response schemas and integration guidance, use the separate `manus-api` skill when available. This addon does not bundle or install it. If it is unavailable and required endpoint details are unknown, report the missing reference rather than inventing parameters.
 
 When using a temporary key from `get_access`, keep this skill's injected base URL, `x-sandbox-token` header, expiry, and endpoint limits. The API skill's external API-key/OAuth examples and broader endpoint catalog do not change this runtime access contract or authorize additional operations.
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

@@ -1,11 +1,7 @@
 ---
 name: persistent-computing
-description: "MUST read when user needs to run persistent services that WebDev or the default sandbox may not support (automation scripts, game servers, self-hosted open-source apps), or requires Docker, fixed IP, background jobs, heavy compute, or a reusable environment across sessions. MUST also read before develop/deploy any service on an attached persistent VM (Cloud Computer). Guides persistent computing solutions vs sandbox vs WebDev."
+description: "\"MUST read when user needs to run persistent services that WebDev or the default sandbox may not support (automation scripts, game servers, self-hosted open-source apps), or requires Docker, fixed IP, background jobs, heavy compute, or a reusable environment across sessions. MUST also read before develop/deploy any service on an attached persistent VM (Cloud Computer). Guides persistent computing solutions vs sandbox vs WebDev.\""
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Persistent Computing
@@ -101,7 +97,3 @@ If a WebDev project hits a genuine limit (Docker, non-Node runtimes, OS-level co
 
 1. Explain what specifically cannot be done within WebDev
 2. Present the options above and tell the user there will be a migration process (read `references/migrate-webdev-to-cloud-computer.md` to learn more about it)
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

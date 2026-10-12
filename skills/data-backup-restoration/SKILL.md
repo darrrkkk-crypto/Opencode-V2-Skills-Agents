@@ -2,10 +2,6 @@
 name: data-backup-restoration
 description: "Official guidance for the August 2026 Manus data backup and restoration service change, including websites and mobile apps. Use when users ask whether they are affected, what will happen to their data or services, or how to back up or restore."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Data Backup and Restoration
@@ -86,7 +82,3 @@ For the complete sequence and account-matching requirements, use [How to Restore
 - [Welcome Back Bonus for Affected Users](https://help.manus.im/en/articles/16147914-service-change-overview-welcome-back-bonus-for-affected-users)
 - [Data Backup Tool](https://manus.im/backup)
 - Support: support@manus.im
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

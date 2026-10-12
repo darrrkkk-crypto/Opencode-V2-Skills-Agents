@@ -1,11 +1,7 @@
 ---
 name: webdev-seo
-description: "Implement and diagnose search discoverability for Manus websites: crawler-visible HTML, per-route metadata, social previews, canonical URLs, sitemap and robots behavior. Use for public pages intended for search, SEO requests, link previews, or indexing problems."
+description: "\"Implement and diagnose search discoverability for Manus websites: crawler-visible HTML, per-route metadata, social previews, canonical URLs, sitemap and robots behavior. Use for public pages intended for search, SEO requests, link previews, or indexing problems.\""
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Website SEO
@@ -119,7 +115,3 @@ Canonical, `og:url`, and sitemap absolute addresses must use an explicitly confi
 public origin, never an internal request-derived address. Until that origin is configured,
 omit those absolute tags rather than emitting a guessed/internal URL. The complete Preview
 origin contract is separate from the SEO panel's thresholds above.
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

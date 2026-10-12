@@ -1,11 +1,7 @@
 ---
 name: financial-analysis
-description: "Research company financials, market prices, SEC filings, earnings calls, investor presentations, options, forex, crypto, and macroeconomic data using structured financial APIs. Use for stock prices, OHLCV charts, financial statements, ratios and screening, fundamentals, earnings transcripts, management commentary, SEC filings (10-K/8-K/risk factors), technical indicators, dividends, IPOs, splits, options chains, exchange rates and currency conversion, crypto prices, treasury yields, inflation, labor data, non-US listings, and table or CSV financial-data requests."
+description: "\"Research company financials, market prices, SEC filings, earnings calls, investor presentations, options, forex, crypto, and macroeconomic data using structured financial APIs. Use for stock prices, OHLCV charts, financial statements, ratios and screening, fundamentals, earnings transcripts, management commentary, SEC filings (10-K/8-K/risk factors), technical indicators, dividends, IPOs, splits, options chains, exchange rates and currency conversion, crypto prices, treasury yields, inflation, labor data, non-US listings, and table or CSV financial-data requests.\""
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Financial Analysis
@@ -186,7 +182,3 @@ Search any API by name with `type: api` to get full parameters, response schemas
 ## Final Answer Checklist
 
 Before delivering, confirm: (1) latest-price requests used Yahoo Finance, not stale Massive bars; (2) every API operation name used appears in a reference file; (3) financial figures came from structured endpoints with period metadata cited; (4) earnings/IR documents were retrieved via the events-first workflow by Document ID; (5) non-US tickers were routed to Yahoo Finance; (6) bulk/table requests used pagination, not one-by-one lookups.
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

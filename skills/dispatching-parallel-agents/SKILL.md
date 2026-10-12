@@ -2,10 +2,6 @@
 name: dispatching-parallel-agents
 description: "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies"
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Dispatching Parallel Agents

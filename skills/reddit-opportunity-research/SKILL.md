@@ -2,10 +2,6 @@
 name: reddit-opportunity-research
 description: "Researches Reddit using a brand's Brand DNA to find promotable pain-point discussions, target subreddits, and real user search language. Produces a prioritized Reddit opportunity list for content seeding, helpful replies, and prompt research inspiration."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Reddit Opportunity Research

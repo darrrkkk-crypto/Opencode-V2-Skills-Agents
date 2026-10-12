@@ -1,11 +1,7 @@
 ---
 name: webdev-worklocally
-description: "Use only for Local First development on Studio or a Cloud Computer/Persistent Sandbox; if the current environment is the ordinary platform-managed Manus Sandbox, you do not need to follow this Skill. Use for local website, mobile app and game development: ask whether Web/Mobile should use Manus-managed services or stay plain local; disclose that managed Mobile switches the task to Cloud before the user chooses. Discover nearby declarations, obtain the website hosting choice, and initialize local Game as Manus-managed without offering a plain-local choice. Use project_dir to select a project independently of the initial task folder without changing the Session directory. Confirm an existing working copy when its identity is unclear. Covers file declarations, separate Managed Git, worktrees and Session preview; unrelated coding and read-only inspection need no init/attach."
+description: "\"Use only for Local First development on Studio or a Cloud Computer/Persistent Sandbox; if the current environment is the ordinary platform-managed Manus Sandbox, you do not need to follow this Skill. Use for local website, mobile app and game development: ask whether Web/Mobile should use Manus-managed services or stay plain local; disclose that managed Mobile switches the task to Cloud before the user chooses. Discover nearby declarations, obtain the website hosting choice, and initialize local Game as Manus-managed without offering a plain-local choice. Use project_dir to select a project independently of the initial task folder without changing the Session directory. Confirm an existing working copy when its identity is unclear. Covers file declarations, separate Managed Git, worktrees and Session preview; unrelated coding and read-only inspection need no init/attach.\""
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Webdev Work Locally
@@ -174,7 +170,3 @@ When the application requires managed environment values, read the relevant conf
 Start a resident dev server with the existing `service=true` execution behavior and required narrow network grant; probe the actual loopback site. Use the assigned listener for HMR too. `require_escalated` is not the Host's `network=true` permission interface.
 
 If a preview the user requested stops after Desktop/Operator restart, restoring that preview is part of the request: check its actual port, reload the same website environment when needed, restart only if necessary and verify the website. Do not launch duplicate healthy services. Do not restart after an explicit stop/kill or during a read-only task. Report real permission/startup failures rather than looping through alternative routes.
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

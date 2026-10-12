@@ -2,10 +2,6 @@
 name: muapi-ui-design
 description: "Generate high-fidelity UI/UX mockups for mobile and web apps using Atomic Design principles — creates wireframes and design systems via muapi.ai"
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # 🎨 UI/UX Design Mockup Skill

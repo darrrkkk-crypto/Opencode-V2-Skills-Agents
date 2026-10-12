@@ -2,10 +2,6 @@
 name: office-documents
 description: "Create, inspect, edit, and convert Word (.docx) and Excel (.xlsx/.csv) documents, including HTML or PDF output. For PowerPoint, use only to modify an existing actual .pptx file. Use the Slides skill for presentation creation and Slides artifacts, including PPTX exports."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Office documents

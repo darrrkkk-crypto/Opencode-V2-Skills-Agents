@@ -2,10 +2,6 @@
 name: manus-config
 description: "Manage Agent Profiles, connectors (App, Custom API, Custom MCP), project instructions and shared files, and scheduled task execution with manus-config. Use when the user asks to list, inspect, create, or update an Agent; enable, inspect, or modify integrations; create a new connector from an MCP server URL/command or an API key the user provides; inspect, update, or delete the user's own custom connectors; manage project-level configuration or shared project files; explicitly add, update, or remove shared project web links; or create, update, inspect, pause, expire, or troubleshoot scheduled tasks using cron, intervals, connector UIDs, or run-as-new behavior."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # manus-config
@@ -408,7 +404,3 @@ manus-config config save
 | Recurring interval rejected | Interval is below 300 seconds | Raise to at least 300, or use cron. |
 | `--repeated false` ignored | Space form is not parsed | Use `--repeated=false`. |
 | `save` produces unexpected or partial diff | Baseline is stale from a previous session; no `load` was run before editing | Always run `load` before starting a new round of edits to refresh the baseline. |
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

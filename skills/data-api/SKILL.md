@@ -2,10 +2,6 @@
 name: data-api
 description: "Look up external data and generate 3D assets through Manus Data APIs — X/Twitter posts and profiles, LinkedIn people and companies, YouTube videos and captions, TikTok/Instagram/Reddit content, financial market data (prices, technical indicators, company financials), SEC filings and earnings call transcripts, Crunchbase companies and investors, World Bank indicators, Google Trends, App Store rankings, Similarweb website traffic, domain-name availability, and 3D models from text or images. Use when the task needs structured data from these sources instead of scraping web pages, or needs a 3D asset generated programmatically."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Manus Data API
@@ -57,7 +53,3 @@ Use `--body-json`, `--path-params-json`, or `--multipart-form-data-json` when re
 
 - `financial-market` has 70+ APIs, so make `--query` specific — include the asset class (stock / option / forex / crypto / macro), the exact metric (e.g. "RSI", "income statement", "short interest", "treasury yields"), and use English keywords. A vague query like "Tesla" returns weaker matches than "Tesla daily stock price history OHLCV".
 - `earnings-research` typical flow: resolve the company first (list_companies by ticker), then list events/reports/transcripts for it, then fetch the specific document by ID.
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

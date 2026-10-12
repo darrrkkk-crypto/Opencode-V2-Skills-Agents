@@ -2,10 +2,6 @@
 name: handoff
 description: "Privately transfer a temporary workspace file between Manus execution devices with handoff.create and handoff.receive. Use when a file must move between Desktop Work Locally, another selected device, or a session runtime and no shared filesystem exists."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Handoff

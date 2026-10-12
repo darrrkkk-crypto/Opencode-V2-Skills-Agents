@@ -1,11 +1,7 @@
 ---
 name: automation-and-scheduling
-description: "Route requests to configure, manage, or redesign future or unattended work to Manus ScheduleTask, Manus Triggers, application-native automation, or an appropriate execution environment. Use for scheduled tasks, reminders, event-driven workflows, condition monitors, bots, and automation architecture decisions. Distinguish an existing automation execution from a setup request; finite current-task jobs do not require automation merely because they run asynchronously."
+description: "\"Route requests to configure, manage, or redesign future or unattended work to Manus ScheduleTask, Manus Triggers, application-native automation, or an appropriate execution environment. Use for scheduled tasks, reminders, event-driven workflows, condition monitors, bots, and automation architecture decisions. Distinguish an existing automation execution from a setup request; finite current-task jobs do not require automation merely because they run asynchronously.\""
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Automation and Scheduling
@@ -61,7 +57,3 @@ Read the selected owner's instructions before implementation. Use `manus-config`
 Carry forward the user's source, condition, action, destination, execution context, permissions, and any expiry. Keep changing implementation details in the owning Skill and live tool definitions rather than restating them here.
 
 Complete authorized setup or management and report the service-confirmed result. Distinguish an enabled configuration from a source awaiting synchronization or credentials, and distinguish readiness from actual execution or delivery. Provide the returned management link when available. Do not claim remote deployment or successful delivery from a local file edit, configuration acceptance, or diagnostic run alone.
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

@@ -2,10 +2,6 @@
 name: triggers
 description: "Create and manage condition-based Manus automations using provider events, webhooks, or scheduled JavaScript monitoring. Also use to inspect executions and debug saved script Triggers. For reminders or recurring instructions without a monitored condition, use manus-config ScheduleTask instead."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Triggers
@@ -101,7 +97,3 @@ When an event Trigger does not fire, read `triggers.get_trigger` first: each ent
 - Prefer a dry run over writing test rows into the watched resource. Do not add test data to shared or team-owned resources without the user's agreement, and remove any test data you did add.
 - `provider_response_invalid` means the provider returned something the reader does not accept; the detail names the failed check (for example a property or row). Report it with the trigger and entry UIDs as a product issue; do not retry it or switch accounts.
 - `triggers.update_trigger` and re-enabling can return an entry to `ready` without the cause being fixed. Confirm a fix with `triggers.dry_run_entry` or the next real execution before reporting that the error is resolved.
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

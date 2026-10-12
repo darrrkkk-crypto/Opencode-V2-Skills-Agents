@@ -2,10 +2,6 @@
 name: applying-brand-guidelines
 description: "This skill applies consistent corporate branding and styling to all generated documents including colors, fonts, layouts, and messaging"
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Corporate Brand Guidelines Skill

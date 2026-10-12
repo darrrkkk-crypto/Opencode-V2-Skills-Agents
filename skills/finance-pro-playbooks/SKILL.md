@@ -1,11 +1,7 @@
 ---
 name: finance-pro-playbooks
-description: "Comprehensive workflow guide for ANY finance, investing, or company analysis task. MUST read for: (1) General investment research — analyzing stocks/companies, reading earnings/filings, fetching financial data, or researching industries; (2) Professional IB/PE/VC tasks — valuation & modeling (DCF/LBO/comps), deal structuring, due diligence, M&A materials (teaser/CIM), and IC memos. Encodes professional data-sourcing rules (source hierarchy, fiscal-period discipline), silent industry defaults, and deliverable formatting standards; for finance Excel outputs its formats/excel_standards.md supersedes generic spreadsheet skills (e.g., excel-generator). DO NOT use for: quant trading system development, legal dispute calculations, or personal tax filing."
+description: "\"Comprehensive workflow guide for ANY finance, investing, or company analysis task. MUST read for: (1) General investment research — analyzing stocks/companies, reading earnings/filings, fetching financial data, or researching industries; (2) Professional IB/PE/VC tasks — valuation & modeling (DCF/LBO/comps), deal structuring, due diligence, M&A materials (teaser/CIM), and IC memos. Encodes professional data-sourcing rules (source hierarchy, fiscal-period discipline), silent industry defaults, and deliverable formatting standards; for finance Excel outputs its formats/excel_standards.md supersedes generic spreadsheet skills (e.g., excel-generator). DO NOT use for: quant trading system development, legal dispute calculations, or personal tax filing.\""
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Finance Pro Playbooks

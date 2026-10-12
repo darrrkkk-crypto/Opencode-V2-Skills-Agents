@@ -2,10 +2,6 @@
 name: tts-prompter
 description: "MUST read immediately before drafting a prompt for, selecting a voice for, or calling `manus-tools.generate_speech` — including narration, dubbing, and dialogue in video-editing tasks. Covers voice selection, prompt composition, timing, language guidance, and expressive delivery."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # TTS Prompter
@@ -117,4 +113,3 @@ The `language_code` parameter acts only as an auxiliary hint to select the corre
 
 - Before selecting any `voice_name`, read `references/voice_catalog.md` for the complete catalog of 30 prebuilt voices, gender, and timbre.
 - For time-constrained narration, dubbing, or advertising, read `references/language_catalog.md` for regional language codes and rate estimates.
-

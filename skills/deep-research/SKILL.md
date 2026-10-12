@@ -2,10 +2,6 @@
 name: deep-research
 description: "MUST read before the first search/fetch. Research a question across multiple sources and synthesize the findings into a clear, readable answer or report. Use whenever answering requires looking up information, not only when the user explicitly asks for in-depth research. Skip it only when no searching is needed."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Deep Research
@@ -64,7 +60,3 @@ metadata:
 ### Delivery
 
 Write in final form with citations from the start and deliver once the question is answered without known material errors. Default to no post-draft review or cross-review. Only revisit a concrete issue that could materially change the answer; normally resolve it in one targeted pass, with two passes total as the hard maximum across the lead and all agents. Reuse existing evidence and correct only affected passages, then deliver without another check or full rewrite. If support remains insufficient, qualify or omit the claim. Do not create standalone verification logs or validation scripts for ordinary reports. Keep accompanying messages brief and link files directly.
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

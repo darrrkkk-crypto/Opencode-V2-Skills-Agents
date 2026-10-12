@@ -1,11 +1,7 @@
 ---
 name: appinsights-instrumentation
-description: "Instrument a webapp to send useful telemetry data to Azure App Insights"
+description: "'Instrument a webapp to send useful telemetry data to Azure App Insights'"
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # AppInsights instrumentation

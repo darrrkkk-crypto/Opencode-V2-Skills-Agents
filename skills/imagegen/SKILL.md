@@ -1,11 +1,7 @@
 ---
 name: imagegen
-description: "Use for visual deliverable routing and image generation/editing tasks, including new images, image edits, image upscaling/restoration/enhancement, UI mockups, diagrams, infographics, posters, icons, logos, charts, schedules/itineraries/tables delivered as images, visual assets, and ambiguous visual requests. Helps choose between Mermaid, Python plotting, HTML-rendered static layouts, web/app development, and AI image generation/editing."
+description: "\"Use for visual deliverable routing and image generation/editing tasks, including new images, image edits, image upscaling/restoration/enhancement, UI mockups, diagrams, infographics, posters, icons, logos, charts, schedules/itineraries/tables delivered as images, visual assets, and ambiguous visual requests. Helps choose between Mermaid, Python plotting, HTML-rendered static layouts, web/app development, and AI image generation/editing.\""
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # ImageGen Manus
@@ -185,7 +181,3 @@ For HTML-rendered layouts, view the final PNG once: every time, date, number, an
 Use deterministic image processing for operations where no new visual content is needed: downscaling, trimming, format conversion, or compression. When a resize or crop implies a new aspect ratio, default to preserving all content unless the user explicitly accepts edge loss; use AI editing to reconstruct or adapt the image when content must not be lost.
 
 Deliver the artifact that matches the selected route: Mermaid source for Mermaid requests, chart image and source data/code as appropriate for Python plots, implementation files for code/demo/web/app requests, the rendered PNG for HTML-rendered layouts (plus the HTML source when the user wants an editable file), and final image files for AI generation or editing. Once the requested artifact has been delivered, **stop**. Do not continue generating extra variants, backup versions, additional fixes, or follow-up improvements after final delivery unless the user asks for them. Briefly state only essential scenario assumptions or known limitations that affect use.
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

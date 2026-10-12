@@ -1,11 +1,7 @@
 ---
 name: webdev
-description: "Build and deliver an initialized Manus website: planning, design, development, Preview, configuration, checkpoints, publishing and saving/connecting code to GitHub. Load optional references only for capabilities or recovery the task actually needs."
+description: "\"Build and deliver an initialized Manus website: planning, design, development, Preview, configuration, checkpoints, publishing and saving/connecting code to GitHub. Load optional references only for capabilities or recovery the task actually needs.\""
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Webdev
@@ -454,7 +450,3 @@ implementation, verification and delivery. Cross-links locate owners.
 Read [setup](references/game-setup.md) before init. Follow the recorded engine: Three.js uses its starter receipt and Web build/checkpoints; Godot uses its [workflow](references/game-workflow.md). Both require [Game sharing](references/game-sharing.md) before metadata/OG work or `game/sharing` writes, and [in-place 3D animation](references/game-assets.md#continuous-animation-and-alignment).
 
 For Godot, read [Game Tweak language](references/game-runtime.md#tweak-presentation-language) before creating or editing Tweak parameters, including existing projects and after context loss.
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

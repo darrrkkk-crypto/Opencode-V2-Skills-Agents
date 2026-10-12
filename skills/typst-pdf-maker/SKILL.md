@@ -1,11 +1,7 @@
 ---
 name: typst-pdf-maker
-description: "Generate professional, high-quality PDF documents with Typst. Use for reports, academic papers, resumes, structured documents, mathematical typesetting, code-rich documents, precise layouts, and CJK typography when Markdown-to-PDF is insufficient. Select one skill-owned asset or compatible Typst Universe base before adding packages. Route ordinary presentation requests to Manus Slides/PPTX unless the user explicitly requires Typst-generated PDF slides."
+description: "\"Generate professional, high-quality PDF documents with Typst. Use for reports, academic papers, resumes, structured documents, mathematical typesetting, code-rich documents, precise layouts, and CJK typography when Markdown-to-PDF is insufficient. Select one skill-owned asset or compatible Typst Universe base before adding packages. Route ordinary presentation requests to Manus Slides/PPTX unless the user explicitly requires Typst-generated PDF slides.\""
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Typst PDF Maker
@@ -197,7 +193,3 @@ Deliver the requested PDF and only the additional artifacts the user or acceptan
 | `references/routing-catalog.json` | Machine registry for 43 packages, 30 Universe templates, and 2 built-in assets. The planner reads it during ordinary routing; read relevant entries directly only for route diagnosis, candidate explanation, or registry maintenance. |
 | `references/typst-patterns.md` | On-demand syntax patterns. Read §1 for fonts/page fill, §§4–4b for tables, §§5–6 for image placement, §6b for columns, §6c for blockquotes, §7 for math/code, §9 for Universe imports, and §10 for watermarks/transparency. |
 | `references/layout-rhythm.md` | R4/T1 defaults, optional R1–R3 report alternatives, relative spacing mechanics, ownership limits, edge cases, local scoping, and dense-page QA. |
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

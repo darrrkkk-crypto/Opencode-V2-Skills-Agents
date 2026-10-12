@@ -1,11 +1,7 @@
 ---
 name: photoshop-playbooks
-description: "Use when the user asks what Manus can do with Photoshop or needs workflows for image batches, cutouts, retouching, composites, data-driven variants, reusable Actions, delivery exports, or Photoshop guidance. Routes each workflow by requested client and retained output state among Manus image tools, deterministic file processing, Photoshop Web in My Browser, and Photoshop Desktop through Computer Use."
+description: "\"Use when the user asks what Manus can do with Photoshop or needs workflows for image batches, cutouts, retouching, composites, data-driven variants, reusable Actions, delivery exports, or Photoshop guidance. Routes each workflow by requested client and retained output state among Manus image tools, deterministic file processing, Photoshop Web in My Browser, and Photoshop Desktop through Computer Use.\""
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Photoshop Playbooks (Manus for Photoshop)
@@ -77,7 +73,3 @@ Read `formats/verification-manifest.md` before reporting completion.
 5. Quarantine uncertain images and reconcile interrupted batches by manifest; do not silently accept partial output.
 6. For My Browser or CU, re-observe the saved state after each meaningful transition. Input dispatch is not semantic success.
 7. Report the exact retained artifact, unsupported state, skipped items, and remaining human review.
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

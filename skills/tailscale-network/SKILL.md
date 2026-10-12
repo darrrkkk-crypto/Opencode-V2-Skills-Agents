@@ -2,10 +2,6 @@
 name: tailscale-network
 description: "Connect a Windows or Linux computer in Manus or Cue, including a Cloud Computer or sandbox, to the user's Tailscale network with authorization links for the user’s own browser, device approval, and access to tailnet services."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Connect a computer to Tailscale
@@ -106,7 +102,3 @@ curl --proxy socks5h://127.0.0.1:1055 --connect-timeout 5 --max-time 15 \
 Adapt the proxy address if changed. Verify the actual response; a pong alone does not prove application access. On failure, check proxy use, target listener, access policy, then application authentication. Do not scan unrelated services. For requested SSH access, read [references/ssh.md](references/ssh.md).
 
 References for unfamiliar versions/errors: [userspace networking](https://tailscale.com/docs/concepts/userspace-networking), [CLI](https://tailscale.com/docs/reference/tailscale-cli), [tested network detection](https://github.com/tailscale/tailscale/blob/v1.102.4/net/netmon/state.go), [compatibility switch](https://github.com/tailscale/tailscale/blob/v1.102.4/envknob/envknob.go).
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

@@ -2,10 +2,6 @@
 name: builtin-llm-models
 description: "Reference for Manus's built-in LLM catalog and how to call it correctly. Read this BEFORE writing any script that calls LLMs in bulk (summarization, translation, classification, extraction, deep analysis, judging/evaluation, map/parallel fan-out) on a Manus computer — the Sandbox, the user's local computer, or a Cloud Computer — AND before using the built-in LLM in a webdev project (invokeLLM / listLLMModels). Use it to discover which models exist, each model's price/capabilities, how to pick one, the exact request shapes (thinking/reasoning, JSON-schema structured output, vision, tools), and the per-model gotchas (max-token handling, reasoning syntax) verified against the live proxy."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Built-in LLM Models
@@ -375,7 +371,3 @@ Webdev path is `"$BUILT_IN_FORGE_API_URL/v1/chat/completions"` with `BUILT_IN_FO
 - `scripts/models.mjs` — prints the live catalog.
 - `scripts/llm_batch.mjs` — concurrent, retrying batch driver for every Manus computer.
 - `scripts/llm_batch.py` — the same batch driver for Sandbox Python.
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

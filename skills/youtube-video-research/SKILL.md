@@ -2,10 +2,6 @@
 name: youtube-video-research
 description: "Enhance any deep research task with first-hand YouTube video evidence via manus-analyze-video. Highly recommended whenever the task involves deep research, investigation, report writing, industry analysis, competitive intelligence, market research, technology trends, cultural analysis, policy research, or any information-gathering task that would benefit from expert talks, interviews, keynotes, panels, documentaries, product demos, vlogs, or conference presentations on YouTube. Also use when the user explicitly mentions YouTube, video sources, or asks for first-hand evidence. YouTube contains unfiltered first-person insights (CEO interviews, expert panels, practitioner vlogs, conference talks, earnings calls) unavailable in text articles, making it a critical primary source for virtually any research topic."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # YouTube Video Research
@@ -278,7 +274,3 @@ When analyzing multiple videos on the same topic, synthesize rather than list se
 | Dumping raw analysis without synthesis | Weave multi-source insights into thematic narratives with quote dialogues |
 | Forgetting to include video links | Always provide YouTube URLs in the Source Videos table and References |
 | **Analysis Failure (e.g., video deleted, no transcript, too long)** | **Fallback:** Use `search` to find text summaries, articles, or alternative videos on the same topic. Do not halt the research process. |
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.

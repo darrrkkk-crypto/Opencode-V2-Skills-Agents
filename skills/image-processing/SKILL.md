@@ -2,10 +2,6 @@
 name: image-processing
 description: "Understand, inspect, or programmatically transform existing images. Use when the task requires describing or answering questions about an image, performing deterministic image manipulation such as downscaling, cropping, format conversion, or compression, or running traditional computer vision operations."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Image Processing

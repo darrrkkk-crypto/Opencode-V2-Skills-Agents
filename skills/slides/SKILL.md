@@ -2,10 +2,6 @@
 name: slides
 description: "Use for ANY request to create or edit a presentation, slide deck, slides, or PPT, in any language — INCLUDING requests phrased as \"HTML presentation\" or \"HTML slides\" (this skill's HTML mode serves them). Always create presentations through this skill; never hand-write standalone HTML/PPTX presentation files, unless the user explicitly asks not to use the Slides tool. Also covers previewing, inspecting, and updating existing decks. Supports pptx (default), HTML, and image generation modes."
 compatibility: opencode
-metadata:
-  source-bundle: all_skills.zip
-  adaptation: opencode-v2
-  opencode/slash: "true"
 ---
 
 # Slides
@@ -108,7 +104,3 @@ The user-facing deliverable for a Slides task is the **resource**, not images. `
 - Structural changes flow through Slides tools; page content flows through native file `write`/`edit` calls (HTML: `<id>.html`; pptx: `design.xml` and `<id>.xml`) or, for image decks, only through `slides/generate_image_slide` — never through shell commands or scripts.
 - Widget actions such as refresh are host/UI actions; do not describe them as model-visible deck editing tools.
 - Do NOT hand-edit `project.json`. For HTML decks write only registered slide HTML paths with the native file tool; for pptx decks write only `design.xml` and registered slide XML paths; for image decks never write slide files by hand; use `slides/organize_slides` for add/delete/reorder.
-
-## OpenCode V2 portability notes
-
-This skill was adapted from instructions that mention another platform or its integrations. Before following platform-specific steps, inspect the current OpenCode V2 configuration and the tools actually available in this session. Do not assume that named external tools, MCP servers, APIs, credentials, hosted sandboxes, or platform-specific commands exist in OpenCode. Use an equivalent only when it is actually configured and documented; otherwise state the missing dependency and ask before installing, connecting, or substituting a different service. Preserve the original workflow as reference, but do not claim an external action succeeded unless it was executed and verified.
