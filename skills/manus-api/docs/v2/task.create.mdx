@@ -1,0 +1,18 @@
+---
+title: 'task.create'
+openapi: 'POST /v2/task.create'
+---
+
+import Support from "/snippets/support.mdx"
+
+<Support />
+
+<Tip>
+**Auth:**
+
+- **API Key:** Full access.
+- **Standard OAuth client:** Requires `create_task` or `manage_all_tasks`. With `create_task`, created tasks are accessible only to the same client; see [Task visibility](https://open.manus.ai/docs/v2/open-app#task-visibility).
+- **Trusted client:** Full access.
+
+**Agents:** To message an existing agent instead of creating a new task, use [task.sendMessage](https://open.manus.ai/docs/v2/task.sendMessage) with `agent-default-main_task` as `task_id`. See the [Agents](https://open.manus.ai/docs/v2/agents-overview) guide.
+</Tip>

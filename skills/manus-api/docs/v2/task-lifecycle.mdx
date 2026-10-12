@@ -1,0 +1,263 @@
+---
+title: 'Task Lifecycle'
+description: 'Poll task status, handle confirmations, and process results'
+---
+
+import Support from "/snippets/support.mdx"
+
+<Support />
+
+
+After creating a task with [task.create](https://open.manus.ai/docs/v2/task.create), the agent runs asynchronously. Use [task.listMessages](https://open.manus.ai/docs/v2/task.listMessages) to poll for events and track progress. Also read [task.detail](https://open.manus.ai/docs/v2/task.detail) before treating a stopped Agent run as complete, because background work can continue independently. For push delivery, set up [Webhooks](https://open.manus.ai/docs/v2/webhooks-overview).
+
+```bash
+curl 'https://api.manus.ai/v2/task.listMessages?task_id=YOUR_TASK_ID&order=desc&limit=10' \
+  -H 'x-manus-api-key: YOUR_API_KEY'
+```
+
+## Task status
+
+Look for `status_update` events in the response. The `agent_status` field tells you what to do next:
+
+| agent_status | Meaning | Action |
+|---|---|---|
+| `running` | Agent is working | Keep polling |
+| `stopped` | Current main-Agent run stopped | Check `task.detail.has_running_background_jobs`; read results when it is `false`, otherwise poll until your application deadline |
+| `waiting` | Needs user confirmation or input | Handle based on event type (see below) |
+| `error` | Task failed | Read `error_message` for details |
+
+`has_running_background_jobs` in [task.detail](https://open.manus.ai/docs/v2/task.detail) is optional and independent of `agent_status`:
+
+- `true` — the current execution still has non-blocking background work in pending, queued, or running state. Poll until your application deadline, then report the completion state as unknown.
+- `false` — no such active background Job is known. Read the results.
+- Omitted — the value is unknown, typically an older task or a transient read failure; a later poll may fill it in. Do not treat omission as `false`. Poll until your application deadline, then report the completion state as unknown.
+
+A later user message, schedule, or external trigger can start the same Task again even after the current execution has no active background work.
+
+## Handling `waiting` status
+
+Read `status_detail.waiting_for_event_type`. It falls into one of three cases:
+
+| Event type | Respond with |
+|---|---|
+| `messageAskUser`, `cascadeAskUser` — the agent asks a question | [task.sendMessage](https://open.manus.ai/docs/v2/task.sendMessage). See [Answer an agent question](#answer-an-agent-question). Do **not** use `task.confirmAction`. |
+| An action confirmation (see [examples](#using-task-confirmaction)) | [task.confirmAction](https://open.manus.ai/docs/v2/task.confirmAction) after reviewing the target event. See [Confirm an action](#confirm-an-action). |
+| Any other type | Do not approve automatically. Skip it by sending an ordinary message through [task.sendMessage](https://open.manus.ai/docs/v2/task.sendMessage), for example asking the agent to continue without this action, or direct the user to open the task in Manus. |
+
+Sending any ordinary message while an action is pending skips that action; the agent continues from your message. No schema-specific input is needed.
+
+Unlisted configuration and OAuth targets need the Manus UI or an external authorization flow. They are not `tool_used` events; fetching them with `verbose=true&start_event_id=<waiting_for_event_id>` returns `Event not found`.
+
+### Answer an agent question
+
+When the agent supplies choices, the corresponding `assistant_message` includes a `question_expectation` object:
+
+```json
+{
+  "id": "ask_abc123",
+  "type": "assistant_message",
+  "assistant_message": {
+    "content": "Which formats should I export?",
+    "question_expectation": {
+      "options": ["PDF", "DOCX"],
+      "selection_mode": "multiple",
+      "response_method": "send_message"
+    }
+  }
+}
+```
+
+| Field | Meaning |
+|---|---|
+| `options` | Display text of the choices. Not option IDs, and not an enforced answer schema. Non-empty when present in `task.listMessages`. |
+| `selection_mode` | `single` or `multiple`. Render the matching choice control, and still allow a free-text answer. |
+| `response_method` | Currently fixed to `send_message`. Never `task.confirmAction`. |
+| `event_id` | Webhooks only. Identifies the question event; differs from the webhook envelope `event_id`, which identifies the notification. In `task.listMessages`, use the enclosing message's `id`. |
+
+To answer:
+
+1. Collect the user's selection or free text.
+2. Send a non-empty answer as ordinary `message.content` through [task.sendMessage](https://open.manus.ai/docs/v2/task.sendMessage). For multiple choices, combine the selected text into one readable message. There is no required delimiter, option-ID array, or structured submission format.
+3. Do not submit an empty answer when nothing is selected; ask the user for text instead.
+
+Example answer:
+
+```json
+{
+  "task_id": "task_abc123",
+  "message": { "content": "Please export both PDF and DOCX." }
+}
+```
+
+Edge cases:
+
+- A question with no choices has no `question_expectation` in `task.listMessages`. Use the question text and the waiting event type to request a free-text answer. [Webhooks](https://open.manus.ai/docs/v2/webhooks-overview) may describe the same question with `options: []`.
+- If a client encounters an unknown `response_method`, stop automatic dispatch and check the current API documentation rather than falling back to action confirmation.
+- Neither question ID is required by `task.sendMessage`, and it is not a send-message idempotency key.
+
+### Confirm an action
+
+When an action needs confirmation, the waiting `status_detail` gives its target event ID and the expected input schema:
+
+```json
+{
+    "type": "status_update",
+    "status_update": {
+        "agent_status": "waiting",
+        "status_detail": {
+            "waiting_for_event_id": "R0ayNknItM38cc6a2DbB4W",
+            "waiting_for_event_type": "gmailSendAction",
+            "waiting_description": "Send email to user@example.com",
+            "confirm_input_schema": {
+                "type": "object",
+                "properties": {
+                    "accept": { "type": "boolean" },
+                    "save_draft": { "type": "boolean" }
+                },
+                "required": ["accept"]
+            }
+        }
+    }
+}
+```
+
+The waiting event tells you how to respond. The event identified by `waiting_for_event_id` tells you what the user is approving. If that event is not in the current response window, fetch it explicitly:
+
+```bash
+curl 'https://api.manus.ai/v2/task.listMessages?task_id=YOUR_TASK_ID&verbose=true&start_event_id=R0ayNknItM38cc6a2DbB4W' \
+  -H 'x-manus-api-key: YOUR_API_KEY'
+```
+
+The referenced Gmail event contains the structured tool input:
+
+```json
+{
+  "id": "R0ayNknItM38cc6a2DbB4W",
+  "type": "tool_used",
+  "tool_used": {
+    "tool": "gmail",
+    "action_id": "X0SCXV59huUdjxubJrOYyx",
+    "status": "success",
+    "brief": "Manus is preparing Gmail message",
+    "description": "Preparing Gmail messages",
+    "message": {
+      "action": "Preparing Gmail messages"
+    },
+    "params": {
+      "messages": [{
+        "to": ["user@example.com"],
+        "cc": [],
+        "bcc": [],
+        "subject": "Project update",
+        "content": "The complete email body",
+        "attachments": []
+      }]
+    }
+  }
+}
+```
+
+Use `R0ayNknItM38cc6a2DbB4W` as `task.confirmAction.event_id`. `X0SCXV59huUdjxubJrOYyx` is the tool action ID and may also identify a rollback projection. Do not use it instead of `waiting_for_event_id`.
+
+What the target event exposes:
+
+- Connector confirmations (Gmail, Google Calendar, Outlook Mail, Outlook Calendar, Shopify delete operations, Instagram publishing, Meta Marketing account and mode selection) expose the original structured `params`. Result-driven confirmations may also expose a structured `result`.
+- Connector creation, update, deletion, configuration suggestions, and Agent configuration cards require the Manus UI when the API does not expose enough structured context to build the schema input safely.
+- Expired OAuth events require the account to complete the external authorization flow before the pending operation can continue.
+
+Fetching the target event:
+
+- `tool_used` events normally require `verbose=true`.
+- A waiting status does not force its target event into the current page. Use `verbose=true` with `start_event_id=waiting_for_event_id` when the target is outside the current response window.
+- Profile Agent connector confirmations that exist only in a Cascade sub-lane are not exposed through the main task event timeline.
+
+#### Using `task.confirmAction`
+
+```bash
+curl -X POST 'https://api.manus.ai/v2/task.confirmAction' \
+  -H 'x-manus-api-key: YOUR_API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "task_id": "YOUR_TASK_ID",
+    "event_id": "R0ayNknItM38cc6a2DbB4W",
+    "input": { "accept": true }
+  }'
+```
+
+The `input` format varies by `waiting_for_event_type`. Build it according to `confirm_input_schema`. Use the referenced tool params and result to explain the operation and populate schema fields when applicable. The table below provides common examples. The absence of a schema does not turn an action confirmation into an agent question.
+
+| Event Type | Description | Example Input |
+|---|---|---|
+| `needConnectMyBrowser` | Select a browser from [browser.onlineList](https://open.manus.ai/docs/v2/browser.onlineList), or skip | `{ "action": "select", "client_id": "..." }` or `{ "action": "skip" }` |
+| `gmailSendAction` | Confirm send, or save as draft | `{ "accept": true }` or `{ "accept": true, "save_draft": true }` |
+| `outlookSendMailsAction` | Confirm send, or save as draft | `{ "accept": true }` or `{ "accept": true, "save_draft": true }` |
+| `deployAction` | Confirm deploy. Set `global_allow` to skip future confirmations | `{ "accept": true, "global_allow": true }` |
+| `terminalExecute` | Confirm command. Set `always_allow` to skip future confirmations | `{ "accept": true, "always_allow": true }` |
+| `videoGenerate` | Select video quality: `standard` (default) or `premium` | `{ "choice": "standard" }` |
+| `apiHighCreditNotice` | Respond to high-credit notice: `accept`, `reject`, or `do_not_show_again` | `{ "action": "accept" }` |
+| `googleCalendarCreate` | Confirm calendar event creation | `{ "accept": true }` |
+| `googleCalendarUpdate` | Confirm calendar event update | `{ "accept": true }` |
+| `googleCalendarDelete` | Confirm calendar event deletion | `{ "accept": true }` |
+| `outlookCalendarCreate` | Confirm calendar event creation | `{ "accept": true }` |
+| `outlookCalendarUpdate` | Confirm calendar event update | `{ "accept": true }` |
+| `outlookCalendarDelete` | Confirm calendar event deletion | `{ "accept": true }` |
+| `shopifyAction` | Confirm a Shopify delete operation | `{ "accept": true }` or `{ "accept": false }` |
+| `instagramCreateResult` | Publish prepared Instagram media | `{ "accept": true }` |
+| `metaMarketingAction` | Select at least one ad account using IDs from `tool_used.result.adAccounts[].id` | `{ "accept": true, "selectedAccountIds": ["act_123"] }` |
+| `metaMarketingActionResult` | Confirm marketing result. Optionally specify `mode` | `{ "accept": true }` |
+| `selfConfigSaveAction` | Connector configuration suggestion | Use the Manus UI to apply; `{ "action": "skip" }` is the only safe API fallback when connector details are unavailable |
+| `webdevRunAction` | Run web app. `mode`: `quality` / `speed` (default) / `max` | `{ "accept": true, "mode": "speed" }` |
+| `webdevRunAction` (deploy) | Deploy web app. `visibility`: `owner` (default) / `team` / `public` | `{ "accept": true, "visibility": "owner" }` |
+| `webdevRequestSecrets` | Provide secrets as `[{key, value}]` array, or reject with `accept: false` | `{ "accept": true, "secrets": [{"key": "X", "value": "Y"}] }` |
+| `connectorOauthExpired` | Continue after the connector's external OAuth flow succeeds | `{ "accept": true }` after reauthorization |
+| `mapreduceAction` | Confirm map-reduce operation | `{ "accept": true }` |
+
+<Note>
+Only submit input that matches `confirm_input_schema` or is explicitly documented for the event type. Some events support `{ "accept": false }` as a real cancellation, while others do not consume it and remain waiting. Do not invent a generic cancel input. If the input is valid but the event does not consume it, `task.confirmAction` returns `confirmed: false` and the task remains waiting. To skip the action without a schema-specific input, send an ordinary message through [task.sendMessage](https://open.manus.ai/docs/v2/task.sendMessage); the agent continues from your message.
+</Note>
+
+## Using My Browser
+
+You can let the agent use your local browser. When the agent needs a browser during execution, it will trigger a `needConnectMyBrowser` waiting event. Use [browser.onlineList](https://open.manus.ai/docs/v2/browser.onlineList) to get available clients, then select one via [task.confirmAction](https://open.manus.ai/docs/v2/task.confirmAction):
+
+```bash
+# 1. Get online browser clients
+curl 'https://api.manus.ai/v2/browser.onlineList' \
+  -H 'x-manus-api-key: YOUR_API_KEY'
+
+# 2. When needConnectMyBrowser event is received, select a browser
+curl -X POST 'https://api.manus.ai/v2/task.confirmAction' \
+  -H 'x-manus-api-key: YOUR_API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "task_id": "YOUR_TASK_ID",
+    "event_id": "evt_abc123",
+    "input": { "action": "select", "client_id": "0e9ad711-8471-4fcc-a9de-8309f0f12c87" }
+  }'
+```
+
+<Warning>
+If `browser.onlineList` returns an empty list, no browser clients are online. Install and enable the [Manus Browser Extension](https://manus.im) first.
+</Warning>
+
+## Complete flow
+
+```
+1. POST /v2/task.create          → Create task (optionally with structured_output_schema)
+2. GET  /v2/task.listMessages    → Poll for events
+   ├─ agent_status=running       → Keep polling
+   ├─ agent_status=waiting       → Check waiting_for_event_type
+   │   ├─ messageAskUser / cascadeAskUser → POST /v2/task.sendMessage
+   │   ├─ Action confirmation         → POST /v2/task.confirmAction
+   │   └─ Any other type         → Skip via task.sendMessage, or direct the user to open the task in Manus
+   ├─ agent_status=stopped       → Check task.detail
+   │   ├─ has_running_background_jobs=true → Poll until your deadline, then report unknown
+   │   ├─ has_running_background_jobs=false → Read results for the current execution
+   │   │   └─ structured_output_result → Extracted JSON (if schema was provided)
+   │   └─ field omitted → Retry until your polling deadline, then report unknown
+   └─ agent_status=error         → Task failed, read error details
+```
+
+<Tip>
+**Structured Output:** If you need the result in a specific JSON format, pass `structured_output_schema` when creating the task. See the [Structured Output](https://open.manus.ai/docs/v2/structured-output) guide.
+</Tip>

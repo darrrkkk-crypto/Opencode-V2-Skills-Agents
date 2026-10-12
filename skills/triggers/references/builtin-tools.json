@@ -1,0 +1,1720 @@
+{
+  "source": {
+    "repository": "manus-ai/e2b-executor",
+    "commit": "cf950bd8fea91853c524a167b28d4414a6a9d09e",
+    "files": {
+      "go.mod": "05b708df8e514056949fef2acfd979c89317681e68226d12bbfb62ea59d1f0b3",
+      "go.sum": "9b3a088b99af4d1a12fd5260b106dcf0a9e89e8bd8ba3eef74a9b724d13e223b",
+      "internal/triggerruntime/backend.go": "c428a04925f29a88ca490669daedcef8666859dd0152d67798a0cfeb6492a039",
+      "internal/triggerruntime/budget.go": "fdcc238c41b0d7c79f85c0bd63fccdd861c8a2d9400f6c25a5d5383034d9ab22",
+      "internal/triggerruntime/builtin.go": "d76a9e58f871fdd3b93e6df845f64f6fd8175f41728e8d5ff52606c94f5d81c9",
+      "internal/triggerruntime/builtin_registry.go": "fb3f5e16918ce3c790ae72eb0e55b1a62be1c715e7070461f782dd8c136b80f3",
+      "internal/triggerruntime/builtin_spec.go": "09817344783efaa5b71f002829fbaf0095b6bd0b627986f36798423d9425f751",
+      "internal/triggerruntime/client.go": "20c0b2fb0d4df20e696eb3a23a8b1d7ea4dc08d8a16f023fb2c97655447cbf8d",
+      "internal/triggerruntime/figma.go": "30eba7ccab2acba8efb572db6978fee6040d8a117dca4da6537542508109c125",
+      "internal/triggerruntime/github.go": "2b80e1a5b34b9643b71ffabf007fc5d2ad2186a092ce0b65b8d4b08307563156",
+      "internal/triggerruntime/gmail.go": "ae4299f3ec46525dade7039ed7742c06610f737d10bd1ee41d3af65168147fc4",
+      "internal/triggerruntime/google_ads.go": "403db69c8f5d0bb8b89b7690748db7a5a60b8d219df41183a7f30b8d81dba4a6",
+      "internal/triggerruntime/google_ads_proxy.go": "2685dff6355430cdb4ddd194c7122a5951fad5316568f3774c9189af00f44d14",
+      "internal/triggerruntime/google_calendar.go": "88544e95122314d85acc09d8700790ca0283c412db849f37c1c6be17554c7b80",
+      "internal/triggerruntime/google_drive.go": "b9762cea69e8fa8ee4c2ba86ad6ebd2c19fc371ed3be7ead1fbfaefe53822f56",
+      "internal/triggerruntime/instagram.go": "891e9bec6b3f24e6e53140af41bf0c4cb020fa881e26bd775ad7422634025139",
+      "internal/triggerruntime/mcp.go": "61ef623a4669c6e18e4d87b708a4aaef122fad17dc021f04fd34612b4551902b",
+      "internal/triggerruntime/meta_ads.go": "f8305627f60cfdaa5432be47cd3efd821c565164f05999f470ae17f05fbca2a1",
+      "internal/triggerruntime/meta_creators.go": "3361031768156d00d6666531ac52bfacdd1d4dab076565394694c81ffdcc9658",
+      "internal/triggerruntime/onedrive_business.go": "1fdbb550cd7519fb52da24e79930a8c8ae43005a9dbee7caeffbe0878c9b46cb",
+      "internal/triggerruntime/onedrive_personal.go": "b06733aa0a404168b17e8951ac93961559a32ccf6077f4b3b36013aab5f5e2cf",
+      "internal/triggerruntime/onedrive_result.go": "137b6b386639bde4446d1d0cd3bf823dc70149ae59aa73bec70396cdd92b5e3b",
+      "internal/triggerruntime/outlook_calendar.go": "98466fecfe2d23e33a100dd678156ac718516b453884dd808dff8376d9a017e3",
+      "internal/triggerruntime/outlook_calendar_result.go": "ebf5f1205880da136cdfc472e878c2720a4b71ae458f8ca57db763e675d5a5f1",
+      "internal/triggerruntime/outlook_mail.go": "19173f697c446ac770322bc645c4fceb4300e66024599c3960129b2a550bcbb0",
+      "internal/triggerruntime/process_group.go": "69b3b21cf78cc154597ac225c978458010ffdd9ccf0902a7f44dacb988f0dfed",
+      "internal/triggerruntime/process_scope.go": "2eafd3b21c2929ce8f3b5fbfe805d187f12d44398e46153edc687d1125d867ea",
+      "internal/triggerruntime/protocol.go": "58d6228ef0e6a0009b3dcb47e2eb5fbbe58d8eb54422bb72405f2fb0cfe6e59d",
+      "internal/triggerruntime/provider_http.go": "45e5a246c2e9c26e3acb0a673f50da2c9226975f708abe6acfb33b694a6384bc",
+      "internal/triggerruntime/provider_pagination.go": "1f6d5358bff404b6c338a40ae11c18b2433db784118361a6d5f0e6e3dc035b46",
+      "internal/triggerruntime/provider_result.go": "b28391e340bd748ea1788641256851dad252cebc49b9385409ea73fa31108421",
+      "internal/triggerruntime/provider_transport.go": "c427329cdb9964bc5da23f8f30dcddc6aa8af932fbee4e46d6eb9b51684c43f5",
+      "internal/triggerruntime/resolver.go": "5cfbd0eff201210db808c0d039196ea871132f97583ce43a079d943f650b8685",
+      "internal/triggerruntime/run.go": "a739e5795aa0a36ba0a863eadaec750699c746030347e8ef321ad91524da7d49",
+      "internal/triggerruntime/server.go": "e1529f26999ef5f054a6070528ef0b00fca40849826261702d14a0c245c1cb1b",
+      "internal/triggerruntime/shopify.go": "4ff88beae7e2a18ba6dd9e30dfca7ba4bbf9f65f44d6cd654fb76734addb3506"
+    }
+  },
+  "builtin_ids": {
+    "figma": "BUILTIN_ID_FIGMA",
+    "github": "BUILTIN_ID_GITHUB",
+    "gmail": "BUILTIN_ID_GMAIL",
+    "google_ads": "BUILTIN_ID_GOOGLE_ADS",
+    "google_calendar": "BUILTIN_ID_GOOGLE_CALENDAR",
+    "google_drive": "BUILTIN_ID_GOOGLE_DRIVE",
+    "instagram": "BUILTIN_ID_INSTAGRAM",
+    "meta_creators": "BUILTIN_ID_META_CREATORS",
+    "meta_marketing": "BUILTIN_ID_META_MARKETING",
+    "microsoft_calendar": "BUILTIN_ID_MICROSOFT_CALENDAR",
+    "microsoft_outlook": "BUILTIN_ID_MICROSOFT_OUTLOOK",
+    "one_drive_business": "BUILTIN_ID_ONE_DRIVE_BUSINESS",
+    "one_drive_personal": "BUILTIN_ID_ONE_DRIVE_PERSONAL",
+    "shopify": "BUILTIN_ID_SHOPIFY"
+  },
+  "protocol_version": 1,
+  "tools": {
+    "figma": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List the folders directly visible in a Figma team. The team ID is an explicit Figma resource selector; this does not discover teams or traverse folders recursively.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "team_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "team_id"
+          ],
+          "type": "object"
+        },
+        "name": "figma_list_team_folders"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List the files directly visible in a Figma folder. This reads one folder only and does not traverse descendants or download file content.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "folder_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "folder_id"
+          ],
+          "type": "object"
+        },
+        "name": "figma_list_folder_files"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read bounded Figma file metadata without fetching the document, rendering images, or downloading content.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "file_key": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "file_key"
+          ],
+          "type": "object"
+        },
+        "name": "figma_get_file"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read a bounded structural projection of up to 20 explicitly selected Figma nodes. Geometry, plugin data, images, and downloads are excluded.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "depth": {
+              "default": 2,
+              "maximum": 4,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "file_key": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            },
+            "node_ids": {
+              "items": {
+                "maxLength": 1024,
+                "minLength": 1,
+                "type": "string"
+              },
+              "maxItems": 20,
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "file_key",
+            "node_ids"
+          ],
+          "type": "object"
+        },
+        "name": "figma_get_nodes"
+      }
+    ],
+    "github": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of repository issues INCLUDING pull requests (pull_request field). Supports updated-since detection. data contains raw records; next_page signals more results.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "direction": {
+              "default": "asc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            },
+            "labels": {
+              "type": "string"
+            },
+            "owner": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "page": {
+              "default": 1,
+              "maximum": 9007199254740991,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "per_page": {
+              "default": 30,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "repo": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "since": {
+              "description": "RFC3339 timestamp in UTC (Z or a zero UTC offset), e.g. 2026-09-10T00:00:00Z. Non-zero UTC offsets are rejected.",
+              "format": "date-time",
+              "type": "string"
+            },
+            "sort": {
+              "default": "updated",
+              "enum": [
+                "created",
+                "updated",
+                "comments"
+              ],
+              "type": "string"
+            },
+            "state": {
+              "default": "all",
+              "enum": [
+                "open",
+                "closed",
+                "all"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "owner",
+            "repo"
+          ],
+          "type": "object"
+        },
+        "name": "github_list_issues"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read an issue or PR's issue representation, including Markdown body and timestamps, without fetching comments.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "issue_number": {
+              "maximum": 9007199254740991,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "owner": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "repo": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "issue_number",
+            "owner",
+            "repo"
+          ],
+          "type": "object"
+        },
+        "name": "github_get_issue"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of repository pull requests. No since parameter: compare updated_at to your KV watermark; paginate using next_page.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "base": {
+              "type": "string"
+            },
+            "direction": {
+              "default": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            },
+            "head": {
+              "type": "string"
+            },
+            "owner": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "page": {
+              "default": 1,
+              "maximum": 9007199254740991,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "per_page": {
+              "default": 30,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "repo": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "sort": {
+              "default": "updated",
+              "enum": [
+                "created",
+                "updated",
+                "popularity",
+                "long-running"
+              ],
+              "type": "string"
+            },
+            "state": {
+              "default": "all",
+              "enum": [
+                "open",
+                "closed",
+                "all"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "owner",
+            "repo"
+          ],
+          "type": "object"
+        },
+        "name": "github_list_pull_requests"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read a pull request's body, state, head/base and merge metadata without changing it.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "owner": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "pull_number": {
+              "maximum": 9007199254740991,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "repo": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "owner",
+            "pull_number",
+            "repo"
+          ],
+          "type": "object"
+        },
+        "name": "github_get_pull_request"
+      }
+    ],
+    "gmail": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of Gmail message IDs and thread IDs; use gmail_get_message for content. Pass nextPageToken as pageToken. Account selection belongs in account_uid, not arguments.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "includeSpamTrash": {
+              "default": false,
+              "type": "boolean"
+            },
+            "labelIds": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "maxResults": {
+              "default": 100,
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "pageToken": {
+              "type": "string"
+            },
+            "q": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "name": "gmail_list_messages"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read a Gmail message; full preserves MIME parts and base64url bodies, raw preserves RFC message data. Does not download attachments or mark mail read.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "format": {
+              "default": "full",
+              "enum": [
+                "full",
+                "raw",
+                "metadata",
+                "minimal"
+              ],
+              "type": "string"
+            },
+            "id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "metadataHeaders": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "type": "object"
+        },
+        "name": "gmail_get_message"
+      }
+    ],
+    "google_ads": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List Google Ads customer resource names directly accessible to the authorized OAuth identity. To list accounts under a manager, query customer_client with google_ads_run_gaql_search.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {},
+          "required": [],
+          "type": "object"
+        },
+        "name": "google_ads_list_customers"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one fixed Google Ads Search page of campaigns. Use cursor only from a prior response for the same customer and query.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "customer_id": {
+              "description": "At most 20 UTF-8 bytes.",
+              "maxLength": 20,
+              "minLength": 1,
+              "type": "string"
+            },
+            "login_customer_id": {
+              "description": "At most 20 UTF-8 bytes.",
+              "maxLength": 20,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "customer_id"
+          ],
+          "type": "object"
+        },
+        "name": "google_ads_list_campaigns"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read one Google Ads campaign using a fixed ID query without changing Google Ads data.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "campaign_id": {
+              "description": "At most 19 UTF-8 bytes.",
+              "maxLength": 19,
+              "minLength": 1,
+              "type": "string"
+            },
+            "customer_id": {
+              "description": "At most 20 UTF-8 bytes.",
+              "maxLength": 20,
+              "minLength": 1,
+              "type": "string"
+            },
+            "login_customer_id": {
+              "description": "At most 20 UTF-8 bytes.",
+              "maxLength": 20,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "campaign_id",
+            "customer_id"
+          ],
+          "type": "object"
+        },
+        "name": "google_ads_get_campaign"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Run one read-only Google Ads Query Language (GAQL) SELECT query for a customer and return one page of up to 10,000 rows. Pass login_customer_id when reaching a client through a manager account. Use cursor only from a prior response for the same customer and query.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "customer_id": {
+              "description": "At most 20 UTF-8 bytes.",
+              "maxLength": 20,
+              "minLength": 1,
+              "type": "string"
+            },
+            "login_customer_id": {
+              "description": "At most 20 UTF-8 bytes.",
+              "maxLength": 20,
+              "minLength": 1,
+              "type": "string"
+            },
+            "query": {
+              "description": "At most 10000 UTF-8 bytes.",
+              "maxLength": 10000,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "customer_id",
+            "query"
+          ],
+          "type": "object"
+        },
+        "name": "google_ads_run_gaql_search"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Look up Google Ads field metadata (category, data type, selectability, compatible fields, enum values) to build valid GAQL. Pass exact field_names, or a query substring of field names; with neither, returns the first 100 fields.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "field_names": {
+              "items": {
+                "maxLength": 128,
+                "minLength": 1,
+                "type": "string"
+              },
+              "maxItems": 50,
+              "type": "array"
+            },
+            "query": {
+              "description": "At most 100 UTF-8 bytes.",
+              "maxLength": 100,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "name": "google_ads_get_field_metadata"
+      }
+    ],
+    "google_calendar": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of calendars accessible to the selected Google Calendar account. Returns calendar ID, summary, time zone, and access role only; pass next_cursor unchanged to continue.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "name": "google_calendar_list_calendars"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one bounded time-window page of events in a selected calendar. Recurring events are expanded into occurrences; pass next_cursor unchanged to continue.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "calendar_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            },
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "time_max": {
+              "description": "RFC3339 timestamp with an explicit timezone (Z or an offset), e.g. 2026-09-10T00:00:00Z or 2026-09-10T08:00:00+08:00. At most 128 UTF-8 bytes.",
+              "format": "date-time",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "time_min": {
+              "description": "RFC3339 timestamp with an explicit timezone (Z or an offset), e.g. 2026-09-10T00:00:00Z or 2026-09-10T08:00:00+08:00. At most 128 UTF-8 bytes.",
+              "format": "date-time",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "calendar_id",
+            "time_max",
+            "time_min"
+          ],
+          "type": "object"
+        },
+        "name": "google_calendar_list_events"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read one Google Calendar event without changing it. Returns bounded event details and does not download attachments or follow event links.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "calendar_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            },
+            "event_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "calendar_id",
+            "event_id"
+          ],
+          "type": "object"
+        },
+        "name": "google_calendar_get_event"
+      }
+    ],
+    "google_drive": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of file metadata available to the selected Google Drive account. An optional query uses Google Drive search syntax; paginate with next_cursor. Does not download or export files.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "drive_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "query": {
+              "description": "At most 2048 UTF-8 bytes.",
+              "maxLength": 2048,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "name": "google_drive_list_files"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read metadata for one Google Drive file. Does not download or export file content.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "file_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "file_id"
+          ],
+          "type": "object"
+        },
+        "name": "google_drive_get_file"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Get an opaque starting cursor for future Google Drive changes. The cursor is scoped to the selected account and optional shared drive.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "drive_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "name": "google_drive_get_start_cursor"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of Google Drive changes from an opaque cursor. Use new_start_cursor only after the terminal page; removed files are included.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "drive_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "cursor"
+          ],
+          "type": "object"
+        },
+        "name": "google_drive_list_changes"
+      }
+    ],
+    "instagram": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read the selected Instagram professional account. Account selection belongs in account_uid, not arguments.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {},
+          "required": [],
+          "type": "object"
+        },
+        "name": "instagram_get_account"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of media for the selected Instagram professional account. Pass next_cursor as cursor; navigation URLs are never returned.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "name": "instagram_list_media"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read one media item belonging to the selected Instagram professional account. Does not download media.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "media_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "media_id"
+          ],
+          "type": "object"
+        },
+        "name": "instagram_get_media"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read lifetime insights for one media item belonging to the selected Instagram professional account: reach, likes, comments, shares, saved, total_interactions and views for feed posts and reels; reach, replies, shares, total_interactions and views for stories. Metrics Instagram does not report are omitted.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "media_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "media_id"
+          ],
+          "type": "object"
+        },
+        "name": "instagram_get_media_insights"
+      }
+    ],
+    "meta_creators": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of Facebook Pages on which the connected account can perform tasks. Returns only Page identity, category, tasks, and linked Instagram account summary; Page access tokens and paging URLs are never returned.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "name": "meta_creators_list_pages"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Search Instagram Creator Marketplace creators for a selected, authorized Facebook Page. The Page selection is validated by Biz and results include only creator ID, username, biography, and portfolio URL.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "page_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            },
+            "query": {
+              "description": "At most 2048 UTF-8 bytes.",
+              "maxLength": 2048,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "page_id",
+            "query"
+          ],
+          "type": "object"
+        },
+        "name": "meta_creators_search"
+      }
+    ],
+    "meta_marketing": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of Meta ad accounts available to the authorized user. Returns only account identity, name, status, and update time.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "name": "meta_ads_list_accounts"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of campaigns for one Meta ad account. status, when supplied, is limited to ACTIVE, PAUSED, or ARCHIVED.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "ad_account_id": {
+              "description": "At most 20 UTF-8 bytes.",
+              "maxLength": 20,
+              "minLength": 1,
+              "type": "string"
+            },
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "status": {
+              "enum": [
+                "ACTIVE",
+                "PAUSED",
+                "ARCHIVED"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "ad_account_id"
+          ],
+          "type": "object"
+        },
+        "name": "meta_ads_list_campaigns"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read one Meta campaign's identity, account relationship, name, status, and update time without changing it.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "campaign_id": {
+              "description": "At most 20 UTF-8 bytes.",
+              "maxLength": 20,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "campaign_id"
+          ],
+          "type": "object"
+        },
+        "name": "meta_ads_get_campaign"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read one page of Meta Ads performance metrics (impressions, reach, clicks, CTR, spend, CPC, CPM, actions, action values, cost per action, ROAS, rankings) for an ad account, campaign, ad set, or ad. object_id is the numeric ID without the act_ prefix. Use level to break an account or campaign down into campaign, adset, or ad rows; time_since/time_until (YYYY-MM-DD, both required) override date_preset. Hourly breakdowns omit reach and frequency, which Meta does not report per hour; Meta rejects unsupported breakdown combinations. Numeric metric values (counts, rates and money, including value inside actions, action_values, cost_per_action_type and purchase_roas) are decimal strings; convert them before arithmetic or comparison. quality_ranking, engagement_rate_ranking and conversion_rate_ranking are enum strings such as ABOVE_AVERAGE, BELOW_AVERAGE_35 or UNKNOWN. Money is in the ad account currency.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "action_breakdown": {
+              "enum": [
+                "action_type",
+                "action_target_id",
+                "action_destination"
+              ],
+              "type": "string"
+            },
+            "breakdown": {
+              "enum": [
+                "age",
+                "gender",
+                "country",
+                "region",
+                "hourly_stats_aggregated_by_advertiser_time_zone",
+                "hourly_stats_aggregated_by_audience_time_zone",
+                "device_platform",
+                "publisher_platform",
+                "platform_position",
+                "impression_device"
+              ],
+              "type": "string"
+            },
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "date_preset": {
+              "default": "last_30d",
+              "enum": [
+                "today",
+                "yesterday",
+                "this_week_sun_today",
+                "this_week_mon_today",
+                "last_week_mon_sun",
+                "last_week_sun_sat",
+                "last_3d",
+                "last_7d",
+                "last_14d",
+                "last_28d",
+                "last_30d",
+                "last_90d",
+                "this_month",
+                "last_month",
+                "this_quarter",
+                "last_quarter",
+                "this_year",
+                "last_year",
+                "maximum"
+              ],
+              "type": "string"
+            },
+            "level": {
+              "enum": [
+                "account",
+                "campaign",
+                "adset",
+                "ad"
+              ],
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "object_id": {
+              "description": "At most 20 UTF-8 bytes.",
+              "maxLength": 20,
+              "minLength": 1,
+              "type": "string"
+            },
+            "object_type": {
+              "enum": [
+                "ad_account",
+                "campaign",
+                "adset",
+                "ad"
+              ],
+              "minLength": 1,
+              "type": "string"
+            },
+            "time_increment": {
+              "default": "all_days",
+              "enum": [
+                "all_days",
+                "daily",
+                "monthly"
+              ],
+              "type": "string"
+            },
+            "time_since": {
+              "description": "At most 10 UTF-8 bytes.",
+              "maxLength": 10,
+              "minLength": 1,
+              "type": "string"
+            },
+            "time_until": {
+              "description": "At most 10 UTF-8 bytes.",
+              "maxLength": 10,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "object_id",
+            "object_type"
+          ],
+          "type": "object"
+        },
+        "name": "meta_ads_get_insights"
+      }
+    ],
+    "microsoft_calendar": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of calendars available to the authorized Outlook account. Returns calendar identity and permission summary fields only; use account_uid for account selection.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "name": "outlook_calendar_list_calendars"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of Outlook calendar events within the required RFC3339 time window. An optional calendar_id restricts the view to that authorized calendar; event bodies are requested as fixed plain text only.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "calendar_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            },
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "time_max": {
+              "description": "RFC3339 timestamp with an explicit timezone (Z or an offset), e.g. 2026-09-10T00:00:00Z or 2026-09-10T08:00:00+08:00. At most 64 UTF-8 bytes.",
+              "format": "date-time",
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            },
+            "time_min": {
+              "description": "RFC3339 timestamp with an explicit timezone (Z or an offset), e.g. 2026-09-10T00:00:00Z or 2026-09-10T08:00:00+08:00. At most 64 UTF-8 bytes.",
+              "format": "date-time",
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "time_max",
+            "time_min"
+          ],
+          "type": "object"
+        },
+        "name": "outlook_calendar_list_events"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read one Outlook event from the authorized account. The fixed response includes event title, timing, response status, text description, organizer, attendees, location, and recurrence data; it does not download attachments.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "event_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "event_id"
+          ],
+          "type": "object"
+        },
+        "name": "outlook_calendar_get_event"
+      }
+    ],
+    "microsoft_outlook": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of Outlook messages from the signed-in mailbox or one selected folder. Optionally restrict to unread messages and messages received after a timestamp. Returns metadata only and does not mark messages read. Account selection belongs in account_uid, not arguments.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "folder_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "received_after": {
+              "description": "RFC3339 timestamp with an explicit timezone (Z or an offset), e.g. 2026-09-10T00:00:00Z or 2026-09-10T08:00:00+08:00. At most 64 UTF-8 bytes.",
+              "format": "date-time",
+              "maxLength": 64,
+              "minLength": 1,
+              "type": "string"
+            },
+            "unread_only": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "name": "outlook_mail_list_messages"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Search one page of Outlook messages in the signed-in mailbox using Microsoft Graph message search text. Returns metadata only and does not mark messages read. Account selection belongs in account_uid, not arguments.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "query": {
+              "description": "At most 2048 UTF-8 bytes.",
+              "maxLength": 2048,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "type": "object"
+        },
+        "name": "outlook_mail_search_messages"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read one Outlook message from the signed-in mailbox, including its text body and internet message identifier. Does not download attachments, export MIME, or mark the message read. Account selection belongs in account_uid, not arguments.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "message_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "message_id"
+          ],
+          "type": "object"
+        },
+        "name": "outlook_mail_get_message"
+      }
+    ],
+    "one_drive_business": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of drives accessible to the signed-in work or school user. Use the returned next_cursor to continue; does not enumerate other users, groups, sites, or a tenant.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "name": "onedrive_business_list_drives"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of metadata for a drive root or folder. Pass a folder item ID as parent_item_id, or omit it for the drive root; does not download files.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "drive_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "parent_item_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "drive_id"
+          ],
+          "type": "object"
+        },
+        "name": "onedrive_business_list_children"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Search one drive and return one page of matching item metadata. The query is provider search text, not an OData expression or URL; does not download files.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "drive_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "query": {
+              "description": "At most 2048 UTF-8 bytes.",
+              "maxLength": 2048,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "drive_id",
+            "query"
+          ],
+          "type": "object"
+        },
+        "name": "onedrive_business_search"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read fixed metadata for one item in a drive without downloading its contents or listing permissions.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "drive_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            },
+            "item_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "drive_id",
+            "item_id"
+          ],
+          "type": "object"
+        },
+        "name": "onedrive_business_get_item"
+      }
+    ],
+    "one_drive_personal": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of children in the signed-in user's OneDrive Personal root or a specified folder. Returns metadata only; no file contents or download URLs.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "parent_item_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "name": "onedrive_personal_list_children"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Search the signed-in user's OneDrive Personal root and return one page of file metadata. Search text is not an OData query and no file contents or download URLs are returned.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "query": {
+              "description": "At most 2048 UTF-8 bytes.",
+              "maxLength": 2048,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "type": "object"
+        },
+        "name": "onedrive_personal_search"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read metadata for one item in the signed-in user's OneDrive Personal. Does not download file content or expose download URLs.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "item_id": {
+              "description": "At most 1024 UTF-8 bytes.",
+              "maxLength": 1024,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "item_id"
+          ],
+          "type": "object"
+        },
+        "name": "onedrive_personal_get_item"
+      }
+    ],
+    "shopify": [
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "List one page of products from the selected Shopify shop. Supports Shopify product queries; paginate with next_cursor. Does not read variants, inventory, orders, or media.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "cursor": {
+              "description": "At most 16384 UTF-8 bytes.",
+              "maxLength": 16384,
+              "minLength": 1,
+              "type": "string"
+            },
+            "limit": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "query": {
+              "description": "At most 2048 UTF-8 bytes.",
+              "maxLength": 2048,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "name": "shopify_list_products"
+      },
+      {
+        "annotations": {
+          "destructiveHint": false,
+          "readOnlyHint": true
+        },
+        "description": "Read one Shopify product by its Product GID from the selected Shopify shop. Does not read variants, inventory, orders, or media.",
+        "inputSchema": {
+          "additionalProperties": false,
+          "properties": {
+            "product_id": {
+              "description": "At most 256 UTF-8 bytes.",
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "product_id"
+          ],
+          "type": "object"
+        },
+        "name": "shopify_get_product"
+      }
+    ]
+  }
+}

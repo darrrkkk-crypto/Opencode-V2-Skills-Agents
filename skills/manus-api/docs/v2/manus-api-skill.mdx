@@ -1,0 +1,51 @@
+---
+title: 'Manus API skill'
+description: 'Install the official Manus API skill in Codex and other compatible coding agents'
+---
+
+import Support from "/snippets/support.mdx"
+
+<Support />
+
+Install the official Manus API skill to give your coding agent up-to-date routing and integration guidance for API v2. The website-hosted skill reads the live documentation when it needs exact endpoint schemas, authentication behavior, validation rules, or limits.
+
+## Install
+
+Let the Skills CLI detect your supported coding agents and choose where to install the skill:
+
+```bash
+npx skills add https://open.manus.ai/docs
+```
+
+To install it globally for Codex without prompts:
+
+```bash
+npx skills add https://open.manus.ai/docs --skill manus-api --agent codex --global --yes
+```
+
+<Note>
+  The skill does not contain an API key or OAuth token. Configure credentials in your application or local environment as described in [Authentication](/v2/authentication).
+</Note>
+
+## Use in Manus
+
+No installation is needed inside Manus itself: type `/manus-api` in a task to invoke the official skill and have Manus build your API integration with the same up-to-date guidance.
+
+## What the skill covers
+
+- Task creation, lifecycle, multi-turn conversations, and action confirmations
+- Structured output, files, projects, connectors, and custom skills
+- Webhooks, usage, website publishing, agents, and browser clients
+- API-key authentication and OAuth2 Open Apps
+
+The installed skill treats the live Manus API documentation as authoritative and verifies endpoint-specific details before generating integration code.
+
+## Keep it current
+
+Update installed skills with the Skills CLI:
+
+```bash
+npx skills update manus-api
+```
+
+For the complete API reference, start with the [Manus API introduction](/v2/introduction) or inspect the [API v2 OpenAPI specification](/v2/openapi_v2.json).

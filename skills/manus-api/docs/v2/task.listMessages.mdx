@@ -1,0 +1,20 @@
+---
+title: 'task.listMessages'
+openapi: 'GET /v2/task.listMessages'
+---
+
+import Support from "/snippets/support.mdx"
+
+<Support />
+
+<Tip>
+**Auth:**
+
+- **API Key:** Full access.
+- **Standard OAuth client:** Requires `create_task` or `manage_all_tasks`. With `create_task`, only tasks created by the same client; see [Task visibility](https://open.manus.ai/docs/v2/open-app#task-visibility).
+- **Trusted client:** Full access.
+
+**Handle status:** Read `status_update` events and respond as described in [Task Lifecycle](https://open.manus.ai/docs/v2/task-lifecycle). Answer agent questions with [task.sendMessage](https://open.manus.ai/docs/v2/task.sendMessage); confirm actions with [task.confirmAction](https://open.manus.ai/docs/v2/task.confirmAction).
+
+**Render output:** Resolve file paths and `manus-webdev://` links in assistant content as described in [Attachments](https://open.manus.ai/docs/v2/attachments).
+</Tip>

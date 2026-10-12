@@ -1,0 +1,4 @@
+interface:
+  display_name: "Read Special Images"
+  short_description: "Recover unreadable image details; keep readable images unsplit"
+  default_prompt: "Use $read-special-images to assess task-relevant readability, crop or tile only when needed, and extract content without guessing. Treat unusual dimensions as screening signals, not automatic preprocessing triggers."

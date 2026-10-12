@@ -1,0 +1,107 @@
+---
+title: 'Artifacts'
+description: 'List, filter, and page through generated task outputs in the Manus Library'
+---
+
+import Support from "/snippets/support.mdx"
+
+<Support />
+
+[artifact.list](https://open.manus.ai/docs/v2/artifact.list) returns generated task outputs from the authenticated user's Manus Library. It does not return temporary input files uploaded through [file.upload](https://open.manus.ai/docs/v2/file.upload).
+
+## Quick start
+
+List generated spreadsheets:
+
+```bash
+curl 'https://api.manus.ai/v2/artifact.list?type=spreadsheets&limit=20' \
+  -H "x-manus-api-key: $MANUS_API_KEY"
+```
+
+An example response containing one matching artifact:
+
+```json
+{
+  "ok": true,
+  "request_id": "request_example",
+  "data": [
+    {
+      "id": "artifact_example",
+      "task_id": "task_example",
+      "filename": "forecast.xlsx",
+      "display_name": "Forecast",
+      "type": "spreadsheets",
+      "file_type": "file",
+      "favorite": false
+    }
+  ],
+  "has_more": false
+}
+```
+
+## Filters
+
+All filters are combined with AND semantics. Parameter formats and defaults are in the [artifact.list](https://open.manus.ai/docs/v2/artifact.list) reference.
+
+`oauth_client_id` and `api_key_id` are mutually exclusive. Passing both returns `400 invalid_argument`. OAuth apps with only `create_task` are already limited to their own app's tasks: filtering by `api_key_id` or by another app's `oauth_client_id` returns `403 permission_denied`.
+
+When neither credential filter is present, API keys, OAuth apps with `manage_all_tasks`, and trusted OAuth clients can list all artifacts owned by the user, including outputs from Manus UI tasks. Restricted OAuth apps with only `create_task` always have an implicit source filter for their own app, even when neither parameter is sent.
+
+Credential-filtered lists may omit older artifacts that lack indexed source metadata. This also applies to the implicit filter for restricted `create_task` OAuth apps; omitting the filter parameters does not make those artifacts accessible to that app. An unfiltered request with an API key, `manage_all_tasks`, or a trusted OAuth client can still return these artifacts. Historical source metadata is not backfilled as part of this release.
+
+## Artifact categories
+
+| `type` | Included formats |
+| --- | --- |
+| `all` | All generated artifacts |
+| `website` | Manus Website outputs and WebDev websites, including legacy WebDev outputs without an indexed platform |
+| `mobile_app` | WebDev mobile applications |
+| `game` | WebDev games |
+| `documents` | `pdf`, `doc`, `docx`, `text`, `md`, `mdx`, `txt` |
+| `slides` | Manus Slides and Slide XML outputs |
+| `spreadsheets` | `xlsx`, `xls`, `csv`, `tsv`, `numbers`, `ods` |
+| `images` | `jpg`, `jpeg`, `png`, `gif`, `webp`, `svg`, `bmp`, `heic`, `heif` |
+| `videos` | `mp4`, `avi`, `mov`, `wmv`, `webm`, `mkv`, `m4v`, `mpg`, `mpeg` |
+| `audio` | `mp3`, `wav`, `flac`, `aac`, `ogg`, `wma`, `m4a`, `aiff`, `opus` |
+| `others` | Artifacts outside the categories above |
+
+The ten specific categories are mutually exclusive and together cover `all` for the same indexed data and access scope. Each response item's `type` is the category used by the filter; `all` is only a request value. Classification uses the indexed Library file type and extension, rather than the current filename or `platform_type` returned with the artifact.
+
+Website, WebDev, and Slides classification takes precedence over extension-based categories: a Slides record with a `pdf` extension remains `slides`, and a WebDev record with an unrecognized indexed platform extension belongs to `others`. The format list does not guarantee that an agent can generate every listed format.
+
+## URLs and resources
+
+- Downloadable artifacts return `url`.
+- Website and WebDev artifacts can return a site URL. An unpublished WebDev artifact can have no URL.
+- Mobile WebDev artifacts can return an application `logo` when one is available.
+- Addon artifacts return `resource_uri` instead of exposing an internal `manus-resource://` value as a download URL.
+- `task_id` and credential filters refer to the artifact's original creation task, not its most recent editing task. Only artifacts with an active creation task owned by the authenticated user are returned; collaboration access alone does not include a task.
+- Credential IDs come from the creation-time record. Deleting an API key does not erase that ID; its display name may be absent.
+- `source` is omitted when no API key or OAuth client ID can be attributed to the creation task. This includes UI-created tasks and API-created tasks without recorded credential IDs. An omitted `source` does not imply that the task was created in the UI.
+
+Slides conversion is separate from artifact classification. To retrieve Slides attachments as PowerPoint, use [task.listMessages](https://open.manus.ai/docs/v2/task.listMessages) with `slides_format=pptx`.
+
+## Pagination and ordering
+
+Results are ordered by creation time descending, with stable identifier tie-breakers. Name searches use the same ordering. Pagination has no 10,000-result offset window.
+
+When `has_more` is true, pass `next_cursor` to the next request with the same authenticated user, credential scope, filters, and `limit`. A cursor from another query is rejected. Treat cursors as opaque; restart without a cursor when changing the query.
+
+A page may contain fewer than `limit` artifacts, or even be empty, while `has_more` is true: deleted, blocked, inaccessible, and duplicate search hits are removed before returning results. Continue until `has_more` is false. A dependency failure returns an error; retry the same request and cursor rather than advancing.
+
+Within one traversal, an artifact is returned at most once by `id` and by nonempty `resource_uri`, even when it has projections in several tasks. Retrying a retained cursor replays that page and rechecks current access; apply the replay as a replacement for that page. If combining separate traversals, deduplicate by `resource_uri` when present, otherwise by `id`.
+
+Cursors expire after 5 minutes without use or 15 minutes from the start of the traversal. Only the latest 3 produced pages remain replayable. Each user can retain up to 32 traversals; opening more evicts the least recently used one. An expired, evicted, or older cursor returns `400 invalid_argument`; restart without a cursor. A traversal is limited to 2,000 pages and bounded server state; exceeding capacity returns `429 resource_exhausted`, not an end-of-list response. Refine the query before restarting.
+
+This is a live list, not a snapshot. New artifacts created after the first page normally appear on a fresh traversal. Changes to an artifact's sort position or visibility during traversal can change which items are returned.
+
+Manus-managed private CDN URLs in `url` and `cover_image` pass through the same re-signing path used by Manus Library whenever this endpoint builds a response. A successful re-sign creates a URL with a 48-hour lifetime. Treat signed URLs as temporary and call `artifact.list` again instead of storing one as a permanent artifact identifier. Re-signing is best-effort: if the signing service is unavailable, the stored URL is returned unchanged and can already be expired. Website URLs do not use this expiry, and Addon artifacts use `resource_uri`.
+
+## Errors
+
+| Status / code | When |
+| --- | --- |
+| `400 invalid_argument` | Both credential filters are present, `type` is unsupported, `limit` is outside 1–100, `cursor` is invalid, expired, outside the replay window, or does not match the query. |
+| `403 permission_denied` | An OAuth app with only `create_task` filters by `api_key_id` or another app's `oauth_client_id`. |
+| `429 resource_exhausted` | The request rate or traversal capacity limit is reached. For traversal capacity, refine the query and restart without a cursor. |
+| `503 unavailable` | Search, source metadata, artifact details, or pagination state are temporarily unavailable. Retry the same cursor. |

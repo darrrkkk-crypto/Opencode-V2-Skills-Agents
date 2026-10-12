@@ -1,0 +1,41 @@
+---
+title: 'Task References'
+description: 'Let the agent read earlier tasks from a new message'
+---
+
+import Support from "/snippets/support.mdx"
+
+<Support />
+
+Pass task IDs in `message.task_references` on [task.create](https://open.manus.ai/docs/v2/task.create) or [task.sendMessage](https://open.manus.ai/docs/v2/task.sendMessage). The agent can then browse those tasks on demand: outline a task, search its conversation and files, and read specific parts. It does not receive their full content upfront.
+
+Get task IDs from the `task_id` of a create response or from [task.list](https://open.manus.ai/docs/v2/task.list). A task URL ends with the ID; pass only that trailing 22-character ID.
+
+```json
+{
+  "message": {
+    "content": "Continue the analysis from these two reports.",
+    "task_references": ["TASK_ID_A", "TASK_ID_B"]
+  }
+}
+```
+
+## Request validation
+
+- Each entry must be a bare 22-character alphanumeric task ID. A full task URL or the `agent-default-main_task` shortcut returns `InvalidArgument` (HTTP 400).
+- Up to 20 entries per request. The cap is checked on the array as sent, before duplicates are removed.
+- Duplicates are dropped. On `task.sendMessage`, a reference to the target task itself is dropped.
+
+## Access
+
+Access is checked when the agent reads a reference, not when you send it. A task that does not exist, or that your account cannot open, is reported to the agent as not found. The agent continues without it, and your request succeeds.
+
+Exception: an OAuth client with only the `create_task` scope can reference only tasks it created. Other IDs return `404` at request time. See [Task visibility](https://open.manus.ai/docs/v2/open-app#task-visibility).
+
+## Accumulation on follow-up messages
+
+References accumulate across turns. IDs passed to `task.sendMessage` are added to the references the task already has. Sending `["B"]` to a task that already references `A` leaves it referencing both.
+
+- An empty array is a no-op.
+- References cannot be replaced or cleared. There is no `clear_task_references` field.
+- When a task accumulates more than 20 references, it keeps the 20 most recently referenced and drops the oldest.

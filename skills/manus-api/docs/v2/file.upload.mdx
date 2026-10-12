@@ -1,0 +1,30 @@
+---
+title: 'file.upload'
+openapi: 'POST /v2/file.upload'
+---
+
+import Support from "/snippets/support.mdx"
+
+<Support />
+
+<Tip>
+**Auth:**
+
+- **API Key:** Full access.
+- **Standard OAuth client:** Requires `create_task` or `manage_all_tasks`.
+- **Trusted client:** Full access.
+</Tip>
+
+## Limits
+
+| Limit | Value |
+|---|---|
+| Size per file | 512 MB |
+| Total storage per account | 10 GB |
+| `upload_url` validity | 3 minutes |
+| File lifetime | 48 hours after upload |
+| Blocked types | Executable and script files, such as `.exe`, `.sh`, `.bat`, `.dmg` |
+
+Exceeding a size limit returns `QuotaExceededError`.
+
+Files attached inline in a task message instead of through `file.upload` have a lower cap: `file_url` and decoded `file_data` are limited to 20 MB each. Upload larger files first and pass the returned `file.id` as `file_id`.

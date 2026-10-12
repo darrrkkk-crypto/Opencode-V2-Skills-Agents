@@ -1,0 +1,14 @@
+---
+title: 'Create Task'
+openapi: 'POST /v1/tasks'
+---
+
+import V1Deprecated from "/snippets/v1-deprecated.mdx"
+
+<V1Deprecated />
+
+<Warning>
+The `prompt` is limited to approximately **5,000 estimated tokens**. Manus uses a lightweight text estimate, so the exact character count varies by language and content. Input over the limit returns `InvalidArgument` (HTTP 400).
+</Warning>
+
+We support creating tasks using various connectors, click [here](https://open.manus.ai/docs/v1/connectors/overview) to find out more

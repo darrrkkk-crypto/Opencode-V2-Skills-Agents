@@ -1,0 +1,11 @@
+# Windows setup
+
+Use the official native client and Windows service; do not translate Linux daemon flags or install into WSL. Check OS support, architecture, elevation, `Get-Service Tailscale`, and the installed CLI (normally `C:\Program Files\Tailscale\tailscale.exe`). Invoke a quoted executable path with PowerShell's `&` operator.
+
+If absent, obtain the current matching MSI from [official packages](https://pkgs.tailscale.com/stable/), following [Windows MSI installation](https://tailscale.com/docs/install/windows/msi). Download with a bounded timeout, verify a valid Tailscale Authenticode signature, then install with elevation: `msiexec.exe /i <msi> /qn /norestart /L*v <log>`. Wait with a bounded timeout and inspect the exit code/log; 3010 means reboot required, not a completed reboot. Do not silently reboot. Use the available takeover flow only if an actual UAC/elevation prompt cannot be handled by available tools. Remove the downloaded installer after success.
+
+Verify CLI version and the `Tailscale` service is Running with Automatic startup. Preserve the vendor service configuration and normal Windows adapter/routing. Continue with the shared AuthURL/browser flow; a service running alone does not mean the device is authenticated.
+
+For a Windows Cloud Computer, enable Run Unattended by default as part of setup, unless the user requests session-only connectivity. Include continued connection after Windows sign-out in the existing device confirmation, not a separate follow-up question. Once authorized and authenticated, run `tailscale.exe set --unattended=true` and verify the setting before restarting the service or testing peers; do not wait for an offline failure. For other Windows computers, preserve the existing mode unless unattended operation is requested. Do not change key expiry. Service-restart verification is not proof of sign-out/reboot survival. See [unattended mode](https://tailscale.com/docs/how-to/run-unattended).
+
+If another VPN conflicts, inspect actual routes and report the conflict before changing anything; do not disable it or assume Linux userspace setup applies. For service requests, use native routes and bounded `curl.exe` calls. Tailscale SSH hosting is not supported on Windows; a separately requested SSH server needs native OpenSSH configuration.

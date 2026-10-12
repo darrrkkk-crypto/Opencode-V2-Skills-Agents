@@ -1,0 +1,61 @@
+---
+title: 'Hidden application context'
+description: 'Send application context to the agent without rendering it as user-visible message text.'
+---
+
+import Support from "/snippets/support.mdx"
+
+<Support />
+
+<Note>
+The `hidden` value is available only to a **Trusted public client**. Other callers can omit `visibility` or use its default value, `visible`. API keys, standard OAuth clients, legacy clients, and Trusted team clients cannot send or read hidden application text.
+</Note>
+
+Use hidden application context when the agent needs partner-supplied information that should not appear in the user-visible message body. The LLM receives all content parts in their original order, so a hidden part keeps its position relative to the visible text around it. Hidden text can affect agent behavior and skill selection.
+
+## Send hidden text
+
+Set `visibility: "hidden"` on individual text parts in `task.create` or `task.sendMessage`:
+
+```json
+{
+  "message": {
+    "content": [
+      {"type": "text", "text": "Build my website"},
+      {"type": "text", "text": "Additional application context", "visibility": "hidden"}
+    ]
+  }
+}
+```
+
+`visibility` defaults to `visible`, and plain string content remains visible. Every message must contain at least one non-empty visible text part or valid visible file or voice part. Hidden file and voice parts are not supported. Hidden text counts toward the message token limit.
+
+The API returns `InvalidArgument` (HTTP 400) for all-hidden messages, unsupported visibility values, whitespace-only visible text, or hidden file and voice parts. A caller that is not a Trusted public client receives `PermissionDenied` (HTTP 403) when it attempts to send hidden text.
+
+## Read hidden text
+
+Use a Bearer token from the same Trusted public client and set `verbose=true` on `task.listMessages`. Existing task access restrictions still apply.
+
+```bash
+curl --request GET \
+  --url 'https://api.manus.ai/v2/task.listMessages?task_id=<task_id>&verbose=true' \
+  --header 'Authorization: Bearer <access_token>'
+```
+
+Visible text remains in `user_message.content`. Hidden text is returned separately in `user_message.hidden_content`:
+
+```json
+{
+  "type": "user_message",
+  "user_message": {
+    "content": "Build my website",
+    "hidden_content": ["Additional application context"]
+  }
+}
+```
+
+`hidden_content` preserves the order among hidden text parts. It does not encode each hidden part's position relative to visible text. Other callers and non-verbose requests omit the field.
+
+## Display behavior
+
+Hidden text is omitted from user-facing messages, history, previews, and title input. Model responses may still refer to the hidden context.

@@ -1,0 +1,77 @@
+---
+title: 'Attachments'
+description: 'Resolve file and website references in task message content.'
+---
+
+import Support from "/snippets/support.mdx"
+
+<Support />
+
+Use this guide when rendering `assistant_message.content` returned by [task.listMessages](https://open.manus.ai/docs/v2/task.listMessages). The API returns the original message content from the task without rewriting file paths or Manus resource protocols. Use the surrounding response fields and the related APIs described below to resolve supported Markdown links or images in the application.
+
+Resolve each Markdown link or image destination by type:
+
+1. Render HTTP and HTTPS destinations normally. Do not match them against attachment paths.
+2. Resolve `manus-webdev://` destinations as described in [Website checkpoints](#website-checkpoints).
+3. Match absolute execution-environment paths against message attachments as described in [File paths](#file-paths).
+4. Remove link or image nodes that use another unsupported non-HTTP protocol.
+
+When a file or Manus resource reference cannot be resolved with the required context, remove that link or image node from the rendered output. Preserve the surrounding message text. The API does not perform this rendering step for the application.
+
+## File paths
+
+An assistant can reference an output file by its execution-environment path:
+
+```markdown
+[Download the report](/home/ubuntu/report.pdf)
+```
+
+When the same message contains a matching attachment, `attachments[].path` identifies that reference and `attachments[].url` provides the downloadable HTTP/HTTPS URL:
+
+```json
+{
+  "assistant_message": {
+    "content": "[Download the report](/home/ubuntu/report.pdf)",
+    "attachments": [
+      {
+        "type": "file",
+        "filename": "report.pdf",
+        "content_type": "application/pdf",
+        "path": "/home/ubuntu/report.pdf",
+        "url": "https://private.manuscdn.com/...",
+        "file_uid": "FILE_UID",
+        "version_uid": "VERSION_UID"
+      }
+    ]
+  }
+}
+```
+
+Parse the Markdown link or image destination, URL-decode it once, and compare it with `attachments[].path`. After a match, use `attachments[].url` as the link destination or image source. If no attachment matches this execution-environment path, remove the link or image node from the rendered output. Do not request `path` directly: it is a path inside the task's execution environment, not a public URL.
+
+`path` is optional. It is omitted for attachments that do not have a usable execution-environment path. Download URLs are temporary. If a URL stops working, call `task.listMessages` again to read the current attachment URL. Do not persist a signed URL as permanent file identity. When present, use `file_uid` and `version_uid` to correlate the source output file and version across messages.
+
+- No v2 endpoint accepts either UID as input, and neither resolves a download URL.
+- They are unrelated to the `file_id` of temporary input files from [file.upload](https://open.manus.ai/docs/v2/file.upload), and to the website checkpoint `version_id` in `manus-webdev://` links.
+- The same `file_uid` can appear in different tasks with different `url` values. Do not assume it belongs to the current task.
+- A transformed download, such as `slides_format=pptx`, returns derived bytes while the UIDs still identify the source attachment version.
+
+## Website checkpoints
+
+A website result can appear as a Markdown destination in this form:
+
+```text
+manus-webdev://<version_id>
+```
+
+The value after the scheme is the checkpoint `version_id` for the website attached to the current task. Call [website.listCheckpoints](https://open.manus.ai/docs/v2/website.listCheckpoints) with the same `task_id`, then match the value against `data[].version_id`. If the checkpoint cannot be resolved, remove the link node from the rendered output.
+
+Website checkpoint `version_id` and attachment `version_uid` are unrelated identifiers. Do not use an attachment `version_uid` with `website.listCheckpoints`.
+
+Use [website.status](https://open.manus.ai/docs/v2/website.status) to read the current published URL and version. A checkpoint's successful generation status does not mean that version is currently published.
+
+## Other link protocols
+
+HTTP and HTTPS destinations can be rendered normally. Manus is gradually expanding public recovery support for other protocols.
+
+For now, an API client should remove Markdown link or image nodes whose destinations use another unsupported non-HTTP protocol. Remove only the link or image node. Preserve the surrounding message text. The API returns the original message content and does not perform this rendering step for the client.

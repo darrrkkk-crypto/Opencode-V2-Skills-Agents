@@ -1,0 +1,31 @@
+---
+title: 'file.detail'
+openapi: 'GET /v2/file.detail'
+---
+
+import Support from "/snippets/support.mdx"
+
+<Support />
+
+<Tip>
+**Auth:**
+
+- **API Key:** Full access.
+- **Standard OAuth client:** Requires `create_task` or `manage_all_tasks`.
+- **Trusted client:** Full access.
+</Tip>
+
+## Download an uploaded file
+
+After sending the file bytes to the PUT URL returned by [file.upload](/v2/file.upload), call `file.detail` with the returned `file.id`. This also checks a pending upload, so a completed upload can become available for download immediately. You can download the attachment for content validation before passing its `file_id` to a task.
+
+The response includes these optional fields at the top level, alongside `file`:
+
+| Field | JSON type | Meaning |
+| --- | --- | --- |
+| `download_url` | string | Presigned URL for a GET request. Use it as returned; no Manus API key or OAuth token is needed for the download. |
+| `download_expires_at` | string | Unix timestamp in seconds, encoded as a decimal string. It describes the link's expiration; `file.expires_at` describes the file's lifetime. |
+
+Both fields are returned only when `file.status` is `uploaded` and the file has not expired. Pending, failed (`error`), and expired files retain their metadata response without download fields. A deleted, missing, or other user's file returns HTTP 404 with `error.code: "not_found"`.
+
+The download link is valid for at most **3 minutes**, shortened to the file's remaining lifetime. Deleting the file can invalidate it earlier. Call `file.detail` again to obtain a fresh link while the file remains available.

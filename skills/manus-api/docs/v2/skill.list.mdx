@@ -1,0 +1,18 @@
+---
+title: 'skill.list'
+openapi: 'GET /v2/skill.list'
+---
+
+import Support from "/snippets/support.mdx"
+
+<Support />
+
+<Tip>
+**Auth and returned skills:**
+
+- **API Key:** The user's available skills. Pass `project_id` to include project skills.
+- **Standard OAuth client:** Requires `create_task` or `manage_all_tasks`. Returns only skills owned by its Open App. Passing `project_id` returns `InvalidArgument` (HTTP 400).
+- **Trusted client:** The user's available skills and its App's skills. Pass `project_id` to include project skills.
+</Tip>
+
+The endpoint lists installed skills regardless of their enabled state. Listing a skill does not enable it. Use the returned ID in `message.enable_skills` or `message.force_skills` of [task.create](https://open.manus.ai/docs/v2/task.create) or [task.sendMessage](https://open.manus.ai/docs/v2/task.sendMessage) to select skills for a task.
