@@ -52,7 +52,3 @@ python3 scripts/validate_skills.py
 
 The validator checks skill directory IDs, required frontmatter, description length, duplicate IDs, and required `SKILL.md` files. This is static validation, not a runtime test of all workflows.
 
-
-## Source and licensing
-
-The source supplied for this adaptation was `all_skills.zip`. Original skills may have different authors and licenses. The conversion does not relicense third-party content; retain original license and attribution files and verify each source's redistribution terms before publishing.
